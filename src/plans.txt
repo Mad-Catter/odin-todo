@@ -1,0 +1,21 @@
+Template.html has a display of todos and a potential calendar display.
+When template.html wants to create a new todo, a form will be opened up with a required title and optional description, notes, due date, checklist, priority, and folder.
+Title, descriptions, and notes are all text inputs.
+Checklists are also a text input with an additional marker to say if they are true or not.
+The due date opens up a calendar where you select a day and a checkbox to optionally choose an hour.
+Priority is a sliding scale that, for now, lets say starts with 0-3.  The lower the priority the less important it is.
+Folders is a list of folders that the todo can go into.
+
+Index.js has an event listener waiting for the form to finish and will take the data and give make a new todo from it.
+
+There are two different displays for todos.  One tab shows todos sorted by how soon they need to be done or sorted by how recently they were added.
+Options to only show certain folders.
+Each todo shows a name, possibly short description, a color based off of urgency, and a banner showing how many days left until due date.
+Clicking onto a todo opens up the todo with a possibly longer description, checklists, and a tab for notes.  Options to mark it as complete, delete it, or add to different folders.
+
+Second is a calendar view which also shows todos on each day
+
+
+Problems:
+The calendar.  How do I select a time and how do I make an accurate calendar,
+Google calendar uses a table instead of a calendar which I like.  I still need a way to accurately make the calendar though.

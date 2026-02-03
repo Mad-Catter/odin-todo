@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Todos!</h1>
+        <div class="views">
+            <button type="button" class="card-view">Card View</button>
+            <button type="button" class="calendar-view">Calendar View</button>
+        </div>
+        <div class="news">
+            <button type="button" class="new-folder">Create Folder</button>
+            <dialog class="folder-dialog">
+                <form action="">
+                    <label for="folder-name">Folder Name</label>
+                    <input type="text" name="folder-name" id="folder-name">
+                    <button type="submit" class="folder-confirm">Confirm</button>
+                    <button type="button" class="folder-cancel">Cancel</button>
+                    <dialog class="folder-error">
+                        <span>A folder with that name already exists!</span>
+                    </dialog>
+                </form>
+            </dialog>
+            <button type="button" class="new-todo">Create Todo</button>
+        </div>
+    </header>
+    <main>
+        <div class="sidebar">
+            <p>Folders:</p>
+            <ul class="side-list">
+                <li><div class="checkbox"></div> <span>Folder: A</span></li>
+                <li><div class="checkbox"></div> <span>Folder: B</span></li>
+
+            </ul>
+        </div>
+        <div class="card-viewer">
+            <input type="datetime-local">
+        </div>
+    </main>
+    
+</body>
+</html>
