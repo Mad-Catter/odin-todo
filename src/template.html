@@ -19,10 +19,12 @@
             <button type="button" class="new-folder">Create Folder</button>
             <dialog class="folder-dialog">
                 <form action="">
-                    <label for="folder-name">Folder Name</label>
+                    <label for="folder-name">Folder Name:</label>
                     <input type="text" name="folder-name" id="folder-name">
-                    <button type="submit" class="folder-confirm">Confirm</button>
-                    <button type="button" class="folder-cancel">Cancel</button>
+                    <div class="folder-dialog-buttons">
+                        <button type="submit" class="folder-confirm">Confirm</button>
+                        <button type="button" class="folder-cancel">Cancel</button>
+                    </div>
                     <dialog class="folder-error">
                         <span>A folder with that name already exists!</span>
                     </dialog>
@@ -33,15 +35,40 @@
     </header>
     <main>
         <div class="sidebar">
-            <p>Folders:</p>
+            <h6>Folders:</h6>
             <ul class="side-list">
-                <li><div class="checkbox"></div> <span>Folder: A</span></li>
-                <li><div class="checkbox"></div> <span>Folder: B</span></li>
 
             </ul>
         </div>
         <div class="card-viewer">
-            <input type="datetime-local">
+            <div class="card urgent">
+                <h3>Work on this todo program</h3>
+                <p>Work on this program for atleast 2 hours a day</p>
+                <div class="due-box">
+                    <p>Due: Tomorrow</p>
+                </div>
+            </div>
+            <div class="card important">
+                <h3>Continue learning through the odin project</h3>
+                <p>Short Description Explaining the todo</p>
+                <div class="due-box">
+                    <p>Due: 3 hours</p>
+                </div>
+            </div>
+            <div class="card unimportant">
+                <h3>Todo Name</h3>
+                <p>Short Description Explaining the todo</p>
+                <div class="due-box">
+                    <p>Due: 9 days</p>
+                </div>
+            </div>
+            <div class="card undefined">
+                <h3>Todo Name</h3>
+                <p>Short Description Explaining the todo</p>
+                <div class="due-box">
+                    <p>Due: Next Month</p>
+                </div>
+            </div>
         </div>
     </main>
     
