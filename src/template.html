@@ -41,12 +41,64 @@
             </ul>
         </div>
         <div class="card-viewer">
-            <div class="card urgent">
+            <div class="card urgent dummy-modal">
                 <h3>Work on this todo program</h3>
                 <p>Work on this program for atleast 2 hours a day</p>
                 <div class="due-box">
                     <p>Due: Tomorrow</p>
                 </div>
+                <dialog class="card-modal">
+                    <h3>Work on this todo program</h3>
+                    <p>Work on this program for atleast 2 hours a day</p>
+                    <div class="date-container">
+                        <p>Due on: 2/5/2026 at 4:30pm</p>
+                        <p>Priority: <span class="urgent-text">Urgent</span></p>
+                    </div>
+                    <div class="note-checkbox-container">
+                        <div class="checkboxes-container">
+                            <!-- THIS NEEDS A DIALOG TO ADD A NEW CHECKBOX -->
+                            <button type="button" class="new-checkbox-button container-button">New Checkbox</button>
+                            <div class="checkbox checkbox-a">
+                                <div class="checkbox-body checkbox-body-a">
+                                    <div class="marker yes marker-a"></div>
+                                    <p class="checkbox-text checkbox-text-a">Complete Folder Function</p>
+                                    <input type="text" class="edit-input edit-input-a hidden">
+                                </div>
+                                <div class="checkbox-buttons">
+                                    <button type="button" class="edit-checkbox edit-checkbox-a"><img src="assets/pencil-outline.svg" alt="edit"></button>
+                                    <button type="button" class="delete-checkbox delete-checkbox-a">X</button>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <div class="checkbox-body">
+                                    <div class="marker yes"></div>
+                                    <p class="checkbox-text">Programmed for multiple days</p>
+                                    <input type="text" class="edit-input hidden">
+                                </div>
+                                <div class="checkbox-buttons">
+                                    <button type="button" class="edit-checkbox"><img src="assets/pencil-outline.svg" alt="edit"></button>
+                                    <button type="button" class="delete-checkbox">X</button>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <div class="checkbox-body">
+                                    <div class="marker"></div>
+                                    <p class="checkbox-text">Finish Project</p>
+                                    <input type="text" class="edit-input hidden">
+                                </div>
+                                <div class="checkbox-buttons">
+                                    <button type="button" class="edit-checkbox"><img src="assets/pencil-outline.svg" alt="edit"></button>
+                                    <button type="button" class="delete-checkbox">X</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notes-container">
+                            <button type="button" class="note-edit-button container-button">Edit Notes</button>
+                            <p class="text-notes">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet repellendus unde id dignissimos. Corrupti officia, quibusdam nesciunt odit nostrum nihil qui veniam tempora. Impedit, quam. Saepe quos eos labore qui.</p>
+                            <textarea class="hidden edit-notes"></textarea>
+                        </div>
+                    </div>
+                </dialog>
             </div>
             <div class="card important">
                 <h3>Continue learning through the odin project</h3>

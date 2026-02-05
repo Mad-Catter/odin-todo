@@ -8,6 +8,12 @@
     --header-color: hsl(209, 86%, 44%);
     --header-button-color: hsl(234, 52%, 41%);
     --header-button-border: hsl(204, 100%, 56%);
+    --urgent-color: hsl(17, 80%, 60%);
+    --important-color: hsl(64, 93%, 45%);
+    --unimportant-color: hsl(103, 68%, 44%);
+    --undefined-color: hsl(103, 6%, 77%);
+    --container-color: hsl(177, 52%, 41%);
+    --container-border-color: hsl(271, 64%, 38%);
 }
 input,
 button {
@@ -64,7 +70,8 @@ header > div > button {
     padding: 10px 5px;
     border: var(--header-button-border) 2px solid;
     border-radius: 25px;
-    background-color: var(--header-button-color)
+    background-color: var(--header-button-color);
+    z-index: 5;
 }
 .folder-dialog form {
     display: flex;
@@ -119,6 +126,8 @@ li {
     font-size: 1.25rem;
     margin-left: 15%;
 }
+
+/* Card Viewer Section */
 .card-viewer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -177,16 +186,165 @@ li {
     white-space: nowrap;
 }
 
-.urgent {
-    background-color: hsl(12, 68%, 45%);
+.urgent{
+    background-color: var(--urgent-color)
 }
 .important {
-    background-color: hsl(64, 93%, 45%);
+    background-color: var(--important-color);
 }
 .unimportant {
-    background-color: hsl(103, 68%, 44%);
+    background-color: var(--unimportant-color);
 }
 
 .undefined {
-    background-color: hsl(103, 6%, 77%);
+    background-color: var(--undefined-color);
+}
+
+/* Card Modal Section */
+
+.card-modal {
+    display: none;
+}
+
+.card-modal[open] {
+    height: 60vh;
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--header-color);
+    border: var(--header-button-border) 5px solid;
+    border-radius: 25px;
+}
+.card-modal h3, .card-modal p {
+    color: white;
+}
+
+.card-modal h3 {
+    font-size: 4rem;
+}
+.card-modal p {
+    font-size: 1.3rem;
+}
+.card-modal > p {
+    padding: 25px 0;
+}
+
+.urgent-text {
+    color: var(--urgent-color);
+}
+
+.date-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 150px;
+}
+/* Checkboxes Section */
+.note-checkbox-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.checkboxes-container,
+.notes-container {
+    border: 3px solid var(--container-border-color);
+    border-radius: 10px;
+    width: 500px;
+    height: 300px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+    background-color: var(--container-color);
+    padding: 30px 15px;
+    position: relative;
+}
+.checkbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox-body {
+    display: flex;
+    margin: 20px 0px;
+}
+.checkbox-body:hover {
+    cursor: pointer;
+}
+.marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+    
+}
+
+.yes {
+    background-color: white;
+}
+
+.checkbox-buttons {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+}
+.checkbox-buttons button {
+    width: 25px;
+    height: 25px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.checkbox:hover .checkbox-buttons {
+    display: flex;
+}
+.checkbox:hover {
+    border: 1px rgba(0, 0, 0, 0.384) solid;
+    border-left: none;
+    border-right: none;
+}
+
+.edit-input {
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.notes-container textarea {
+    background: none;
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.container-button {
+    position: absolute;
+    background-color: var(--header-color);
+    border: 3px solid var(--container-border-color);
+    border-right: none;
+    border-top: none;
+    top: 0px;
+    right: 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 1.15rem;
+    height: 30px;
+    padding: 5px;
 }
