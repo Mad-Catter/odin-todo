@@ -19,3 +19,17 @@ Second is a calendar view which also shows todos on each day
 Problems:
 The calendar.  How do I select a time and how do I make an accurate calendar,
 Google calendar uses a table instead of a calendar which I like.  I still need a way to accurately make the calendar though.
+
+
+
+Still todo:
+New Checkbox button working.
+Create Todo Menu and logic.
+  Calendar view for the todo Menu
+Calendar view
+Adding todo's to folder
+    In create folder?
+    Create todo?
+    Probably a dropdown menu of todos
+Error for new folder
+Figure out odd bug where letters disapear from the notes and checkboxes.

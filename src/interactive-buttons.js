@@ -35,7 +35,6 @@ folderConfirm.addEventListener("click", e => {
         errorDialog.show();
     } else{
         addToFolderList(folderName.value);
-        // listOfFolders[folderName.value] = [];
         folderName.value = "";
         folderDialog.close();
         errorDialog.close();

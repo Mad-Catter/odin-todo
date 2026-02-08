@@ -17,11 +17,11 @@
         </div>
         <div class="news">
             <button type="button" class="new-folder">Create Folder</button>
-            <dialog class="folder-dialog">
+            <dialog class="folder-dialog new-dialog">
                 <form action="">
                     <label for="folder-name">Folder Name:</label>
                     <input type="text" name="folder-name" id="folder-name">
-                    <div class="folder-dialog-buttons">
+                    <div class="folder-dialog-buttons dialog-buttons">
                         <button type="submit" class="folder-confirm">Confirm</button>
                         <button type="button" class="folder-cancel">Cancel</button>
                     </div>
@@ -56,7 +56,19 @@
                     </div>
                     <div class="note-checkbox-container">
                         <div class="checkboxes-container">
-                            <!-- THIS NEEDS A DIALOG TO ADD A NEW CHECKBOX -->
+                            <dialog class="new-checkbox-dialog new-dialog">
+                                <form action="">
+                                    <label for="checkbox-name">Checkbox Name:</label>
+                                    <input type="text" name="checkbox-name" id="checkbox-name">
+                                    <div class="checkbox-dialog-buttons dialog-buttons">
+                                        <button type="submit" class="checkbox-confirm">Confirm</button>
+                                        <button type="button" class="checkbox-cancel">Cancel</button>
+                                    </div>
+                                    <dialog class="checkbox-error">
+                                        <span>You cant have a checkbox with no name!</span>
+                                    </dialog>
+                                </form>
+                            </dialog>
                             <button type="button" class="new-checkbox-button container-button">New Checkbox</button>
                             <div class="checkbox checkbox-a">
                                 <div class="checkbox-body checkbox-body-a">

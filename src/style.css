@@ -63,7 +63,7 @@ header > div > button {
 .news {
     position: relative;
 }
-.folder-dialog {
+.new-dialog {
     position: absolute;
     top: 90px;
     width: 300px;
@@ -73,25 +73,25 @@ header > div > button {
     background-color: var(--header-button-color);
     z-index: 5;
 }
-.folder-dialog form {
+.new-dialog form {
     display: flex;
     flex-direction: column;
 }
-.folder-dialog label {
+.new-dialog label {
     font-weight: bold;
     font-size: 1.25rem;
     color: white;
 }
-.folder-dialog input {
+.new-dialog input {
     border-radius: 5px;
     font-size: 1.25rem;
 }
-.folder-dialog-buttons {
+.dialog-buttons {
     display: flex;
     justify-content: space-around;
     padding-top: 10px;
 }
-.folder-dialog-buttons button {
+.dialog-buttons button {
     background: none;
     border: none;
     color: white;
@@ -347,4 +347,9 @@ li {
     font-size: 1.15rem;
     height: 30px;
     padding: 5px;
+}
+
+.new-checkbox-dialog {
+    top: 40px;
+    left: 190px;
 }
