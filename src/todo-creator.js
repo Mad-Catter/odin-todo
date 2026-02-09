@@ -27,4 +27,30 @@ export default class Todo {
             this.folders = folders
         }
     }
+    addToChecklist(check) {
+        if (check in this.checklist) {
+            return "error: repeat"
+        } else if (check === "") {
+            return "error: blank"
+        } else {
+            this.checklist[check] = false;
+            return ""
+        }
+    }
+    toggleChecklist(check) {
+        if (this.checklist[check] === false) {
+            this.checklist[check] = true;
+        } else {
+            this.checklist[check] = false; 
+        }
+    }
+    rewriteChecklist(check, content) {
+        this.checklist[check] = content;
+    }
+    removeFromChecklist(check) {
+        delete this.checklist[check];
+    }
+    rewriteNotes(content) {
+        this.notes = content;
+    }
 }

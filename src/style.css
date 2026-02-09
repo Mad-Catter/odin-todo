@@ -353,3 +353,7 @@ li {
     top: 40px;
     left: 190px;
 }
+
+.checkbox-error {
+    top: 90px;
+}
