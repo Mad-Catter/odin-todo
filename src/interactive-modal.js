@@ -1,4 +1,4 @@
-import { showErrorDialog } from "../error-processor.js";
+import { showErrorDialog } from "./error-processor.js";
 
 function showEditField(button, editField, textField) {
     button.addEventListener("click", e => {
