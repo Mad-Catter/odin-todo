@@ -7,6 +7,11 @@ const folderDialog = document.querySelector(".folder-dialog");
 const folderName = document.querySelector("#folder-name");
 const folderConfirm = document.querySelector(".folder-confirm");
 const folderCancel = document.querySelector(".folder-cancel");
+const cardViewButton = document.querySelector(".card-view");
+const cardViewer = document.querySelector(".card-viewer");
+const calendarViewButton = document.querySelector(".calendar-view");
+const calendarViewer = document.querySelector(".calendar-viewer")
+
 newFolder.addEventListener("click", e => {
     e.stopPropagation();
     folderDialog.show();
@@ -25,6 +30,7 @@ folderCancel.addEventListener("click", e => {
 })
 folderConfirm.addEventListener("click", e => {
     e.preventDefault();
+    // This should maybe be moved to the error module.
     if ((folderName.value.toLowerCase() in listOfFolders)) {
         e.stopPropagation();
         errorDialog.textContent = "A folder with that name already exists!"
@@ -41,4 +47,13 @@ folderConfirm.addEventListener("click", e => {
     }
     
 })
+cardViewButton.addEventListener("click", e => {
+    cardViewer.classList.remove("hidden");
+    calendarViewer.classList.add("hidden");
+})
+calendarViewButton.addEventListener("click", e => {
+    calendarViewer.classList.remove("hidden")
+    cardViewer.classList.add("hidden");
+})
+
 export default {}

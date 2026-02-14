@@ -2,7 +2,7 @@ import "./style.css"
 import Todo from "./todo-creator.js";
 import "./interactive-buttons.js";
 import "./folder-display.js";
-import  {listOfFolders} from "./list.js";
+import  {listOfFolders, listOfTodos} from "./list.js";
 import "./dummy-card-display.js";
 import displayCard from "./card-display.js";
 import "./calendar-buttons.js";
@@ -10,13 +10,38 @@ import "./calendar-buttons.js";
 const trial = new Todo("Make Todo List",
      "This involves coding a todo list",
      "urgent",
-     "2026-02-12T18:03",
+     "2-6-2026",
      "Notes are the true notes.  This is a very deep statment.  Trust me.  Im not just typing things randomly.  Youre typing things randomly.",
      {webpack: true,
       class: true,
       everythingElse: false,
      },
-    ["non-urgents"]);
+    ["non-urgents"]
+);
+const secondTrial = new Todo("Making Fake Todo Lists",
+    "This involes typing nonsense",
+    "unimportant",
+    "2-6-2026",
+    "",
+    {
+
+    },
+    [],
+)
+const thirdTrial = new Todo("Finishing The program",
+    "This involves more work than I though",
+    "undefined",
+    "2-31-2026",
+    "",
+    {
+
+    },
+    [],
+)
+// Think this need to be changed.  It is not very OOP
+// listOfTodos.push(trial);
+// listOfTodos.push(secondTrial);
+// listOfTodos.push(thirdTrial);
 displayCard(trial);
 
 
@@ -25,19 +50,5 @@ test.addEventListener("click", e => {
     console.log(listOfFolders);
 });
 
-const cardViewButton = document.querySelector(".card-view");
-const cardViewer = document.querySelector(".card-viewer");
-const calendarViewButton = document.querySelector(".calendar-view");
-const calendarViewer = document.querySelector(".calendar-viewer")
-
-cardViewButton.addEventListener("click", e => {
-    cardViewer.classList.remove("hidden");
-    calendarViewer.classList.add("hidden");
-})
-calendarViewButton.addEventListener("click", e => {
-    
-    calendarViewer.classList.remove("hidden")
-    cardViewer.classList.add("hidden");
-})
 
 export {listOfFolders};

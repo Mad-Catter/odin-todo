@@ -1,22 +1,37 @@
 import {generateMonthArray} from "./calendar-gen.js";
 import elementCreator from "./element-creator.js";
-
-// Function checks current date.
-// Checks what weekday the first day of the month is and how many days are in the month.
-// The function then will make an array? with the required amount of blank(or numbered?) items until the first day of the calendar is the proper day.
-// It will then make the required amount of days for the month, giving each day a p element with its number, and a class equal to the date it represents.
+import { isSameDay } from "date-fns";
+import { listOfTodos } from "./list.js";
+import createModal from "./modal-display.js"
+// The function takes a date object and gives it to generateMonthArray to get an array of all the days in the month of the date object.
 export function displayCalendar(date) {
     const array = generateMonthArray(date);
     const monthDisplay = document.querySelector(".month");
+    // The splitDate const takes a random entry in the array and gets the month and year from the entry.  I could maybe change this to get it from the date object.
+    // array[20] is a random number that is chosen because it is in the middle of the pack.  Too late of a number and that might not be a date, too early and it might be a blank item.
     const splitDate = array[20].fullDate.split("-");
-    const textMonth = getTextMonth(splitDate[0])
+    const textMonth = getTextMonth(splitDate[0]) + " " + splitDate[2];
     monthDisplay.textContent = textMonth;
     clearCalendar();
     const calendarViewer = document.querySelector(".calendar-viewer");
     for (let i = 0; i < array.length; i++) {
         const day = elementCreator("div", calendarViewer, ["day", array[i].fullDate]);
         if (array[i] !== "") {
-            elementCreator("p", day, "", {textContent: array[i].dayDate})
+            const dayNumber = elementCreator("p", day, "", {textContent: array[i].dayDate})
+            // This checks if a given date is today.  If so, it is given a class to give it a blue marker on its number.
+            if (isSameDay(array[i].fullDate, new Date())) {
+                dayNumber.classList.add("today");
+            }
+        }
+        // This checks each loop if there are any todos on a certain day and if so, an element representing the todo is made.
+        // This is likely a very preformance unfriendly approach.
+        for (let j = 0; j < listOfTodos.length; j++) {
+            const todo = listOfTodos[j];
+            if (todo.dueDate === array[i].fullDate) {
+                const todoDay = elementCreator("div", day, ["todo-day", todo.priority]);
+                elementCreator("p", todoDay, "todo-day-title", {textContent: todo.title});
+                createModal(todo, todoDay);
+            }
         }
     }
 }
@@ -55,9 +70,3 @@ function getTextMonth(num) {
             return "December"
     }
 }
-
-
-
-// Then the calendar will iterate over a list of todos and check if there are any due this month.  Then it will check it will go through and generate a card for each todo.
-// Clicking on a left or right arrow will generate a new month + or - one.
-// Adding a new todo on this screen might need to check if it is new 

@@ -33,10 +33,7 @@ Have a complete folder.
 
 
 Calendar changes {
-  mouse wheel interactivity
-  Month states year as well
   Clicking month brings up a drop down of years + months
-  Better Arrows
   Still need to generate todos on the calendar from a todo list
   Those todos need to be clicked to bring up a card.
   Need to clean up the whole code of the calendar, everything is a bit of a mess at the moment.
@@ -46,4 +43,7 @@ General needs {
   Creating new todos.
   Folders.
   A logo?
+  Currently the modals arent live connections.  If you change a modal on the calendar view it does not change the modal on the card view and vice versa.
+  The calendar todos need a time stamp for when they are due.  Because of this, I need to either have a separate time stamp on the todo object or change the way time is kept on the objects.
+  Still need to create the todo creator.
 }

@@ -1,10 +1,7 @@
 import {getDay, startOfMonth, getDaysInMonth, setDate} from "date-fns"
-
-// Function checks current date.
-// Checks what weekday the first day of the month is and how many days are in the month.
-// The function then will make an array? with the required amount of blank(or numbered?) items until the first day of the calendar is the proper day.
-// It will then make the required amount of days for the month, giving each day a p element with its number, and a class equal to the date it represents.
-const now = new Date();
+// The function takes a date object and then checks what weekday the first day of the month is and how many days are in the month.
+// The function then will make an array with the required amount of blank items until the first day of the calendar is the proper day.
+// It will then make the required amount of days for the month, each day represented by a string that can be turned into a css class.
 function generateMonthArray(date) {
     let firstDay = getDay(startOfMonth(date));
     let totalDays = getDaysInMonth(date);

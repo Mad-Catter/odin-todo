@@ -8,6 +8,7 @@
     --header-color: hsl(209, 86%, 44%);
     --header-button-color: hsl(234, 52%, 41%);
     --header-button-border: hsl(204, 100%, 56%);
+    --header-button-border-lighter: hsl(204, 100%, 68%);
     --urgent-color: hsl(17, 80%, 60%);
     --important-color: hsl(64, 93%, 45%);
     --unimportant-color: hsl(103, 68%, 44%);
@@ -146,6 +147,9 @@ li {
     border-radius: 15px;
     position: relative;
 }
+.card:hover {
+    cursor: pointer;
+}
 .card h3 {
     font-size: 1.75rem;
     padding-top: 40px;
@@ -200,13 +204,13 @@ li {
     background-color: var(--undefined-color);
 }
 
-/* Card Modal Section */
+/* Modal Section */
 
-.card-modal {
+.modal {
     display: none;
 }
 
-.card-modal[open] {
+.modal[open] {
     height: 60vh;
     width: 70vw;
     margin: auto;
@@ -215,18 +219,20 @@ li {
     background-color: var(--header-color);
     border: var(--header-button-border) 5px solid;
     border-radius: 25px;
+    text-align: center;
+    cursor: default;
 }
-.card-modal h3, .card-modal p {
+.modal h3, .modal p {
     color: white;
 }
 
-.card-modal h3 {
+.modal h3 {
     font-size: 4rem;
 }
-.card-modal p {
+.modal p {
     font-size: 1.3rem;
 }
-.card-modal > p {
+.modal > p {
     padding: 25px 0;
 }
 
@@ -378,10 +384,15 @@ li {
     justify-content: space-around;
     align-items: center;
 }
+.calendar-header h1 {
+    color: var(--header-color);
+}
 .calendar-header button {
     background: none;
     border: none;
-    font-size: 3rem;
+}
+.calendar-header button img {
+    width: 50px;
 }
 
 .day {
@@ -391,8 +402,24 @@ li {
     max-height: 100%;
     overflow: hidden;
 }
+.day > p {
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    text-align: center;
+    transition: all 0.2s;
+}
+.day:hover > p {
+    background-color: rgba(128, 128, 128, 0.37);
+}
+.today {
+    background-color: var(--header-button-border);
+}
+.day:hover .today {
+    background-color: var(--header-button-border-lighter);
+}
 
-.todoDay {
+.todo-day {
     padding: 5px 10px;
     margin: 10px 5px;
     border-radius: 25px;
@@ -401,11 +428,11 @@ li {
     align-items: center;
     height: 30px;
 }
-.todoDay:hover {
+.todo-day:hover {
     cursor: pointer;
 }
 
-.todoDayTitle {
+.todo-day-title {
     max-width: 20ch;
     overflow: hidden;
     white-space: nowrap;
@@ -413,9 +440,9 @@ li {
     text-overflow: ellipsis;
 }
 
-.todoOverflow {
+.todo-overflow {
     padding: 5px 10px;
 }
-.todoOverflow:hover {
+.todo-overflow:hover {
     cursor: pointer;
 }

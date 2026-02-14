@@ -107,6 +107,12 @@ function enableConfirmButton(button, textfield, todo, errorDialog, checkboxDialo
             checkboxDialog.close();
         }
     })
+    textfield.addEventListener("keypress", e => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            button.click();
+        }
+    })
 }
 
 

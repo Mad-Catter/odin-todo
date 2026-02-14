@@ -1,6 +1,44 @@
+import Todo from "./todo-creator.js";
+
 const listOfFolders = {
     testFolder: [],
     secondTestFolder: [],
 };
+const listOfTodos = [];
 
-export {listOfFolders}
+const trial = new Todo("Make Todo List",
+     "This involves coding a todo list",
+     "urgent",
+     "2-6-2026",
+     "Notes are the true notes.  This is a very deep statment.  Trust me.  Im not just typing things randomly.  Youre typing things randomly.",
+     {webpack: true,
+      class: true,
+      everythingElse: false,
+     },
+    ["non-urgents"]
+);
+const secondTrial = new Todo("Making Fake Todo Lists",
+    "This involes typing nonsense",
+    "unimportant",
+    "2-6-2026",
+    "",
+    {
+
+    },
+    [],
+)
+const thirdTrial = new Todo("Finishing The program",
+    "This involves more work than I though",
+    "undefined",
+    "2-27-2026",
+    "",
+    {
+
+    },
+    [],
+)
+// Think this need to be changed.  It is not very OOP
+listOfTodos.push(trial);
+listOfTodos.push(secondTrial);
+listOfTodos.push(thirdTrial);
+export {listOfFolders, listOfTodos}
