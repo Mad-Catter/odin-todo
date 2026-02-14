@@ -6,11 +6,13 @@ import  {listOfFolders, listOfTodos} from "./list.js";
 import "./dummy-card-display.js";
 import displayCard from "./card-display.js";
 import "./calendar-buttons.js";
+import "./new-todo-modal.js"
 
 const trial = new Todo("Make Todo List",
      "This involves coding a todo list",
      "urgent",
      "2-6-2026",
+     "3:20pm",
      "Notes are the true notes.  This is a very deep statment.  Trust me.  Im not just typing things randomly.  Youre typing things randomly.",
      {webpack: true,
       class: true,
@@ -22,6 +24,7 @@ const secondTrial = new Todo("Making Fake Todo Lists",
     "This involes typing nonsense",
     "unimportant",
     "2-6-2026",
+    "5:00am",
     "",
     {
 
@@ -31,7 +34,8 @@ const secondTrial = new Todo("Making Fake Todo Lists",
 const thirdTrial = new Todo("Finishing The program",
     "This involves more work than I though",
     "undefined",
-    "2-31-2026",
+    "2-27-2026",
+    "",
     "",
     {
 

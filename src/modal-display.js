@@ -7,14 +7,23 @@ export default function createModal(todo, parent) {
     elementCreator("p", modal, "", {textContent: todo.desc});
     const dateContainer = elementCreator("div", modal, "date-container",);
     // Again this needs to be changed to state the time in a more clean way.
-    elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate}`});
+    if (todo.time && todo.dueDate) {
+        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate} at ${todo.time}`});
+    } else if (todo.time) {
+        elementCreator("p", dateContainer, "", {textContent: `Due at: ${todo.time}`});
+    } else if (todo.dueDate) {
+        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate}`});
+    } else {
+        elementCreator("p", dateContainer);
+    }
+    
 
     const spanParent = elementCreator("p", dateContainer, "", {textContent: "Priority: "});
     const capPriority = todo.priority.charAt(0).toUpperCase() + todo.priority.slice(1);
     elementCreator("span", spanParent, `${todo.priority}-text`, {textContent: capPriority});
 
-    const noteCheckboxContainer = elementCreator("div", modal, "note-checkbox-container");
-    const checkboxesContainer = elementCreator("div", noteCheckboxContainer, "checkboxes-container");
+    const noteCheckboxContainer = elementCreator("div", modal, "modal-box-container");
+    const checkboxesContainer = elementCreator("div", noteCheckboxContainer, "checkboxes-container modal-box");
     const newCheckboxDialog = elementCreator("dialog", checkboxesContainer, "new-checkbox-dialog new-dialog");
     const checkboxForm = elementCreator("form", newCheckboxDialog);
     const formID = self.crypto.randomUUID();
@@ -50,7 +59,7 @@ export default function createModal(todo, parent) {
     for (let i = 0; i < ArrayOfTodoCheckboxes.length; i++) {
         createCheckbox(ArrayOfTodoCheckboxes[i]);
     }
-    const notesContainer = elementCreator("div", noteCheckboxContainer, "notes-container");
+    const notesContainer = elementCreator("div", noteCheckboxContainer, "notes-container modal-box");
     const noteEditButton = elementCreator("button", notesContainer, "note-edit-button container-button", {textContent: "Edit Notes"});
     const textNotes = elementCreator("p", notesContainer, "text-notes", {textContent: todo.notes});
     const noteEditArea = elementCreator("textarea", notesContainer, "hidden edit-notes");

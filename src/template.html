@@ -31,6 +31,56 @@
                 </form>
             </dialog>
             <button type="button" class="new-todo">Create Todo</button>
+            <dialog class="todo-modal modal">
+                <form action="">
+                    <label for="todo-name">Todo Name:</label>
+                    <input type="text" name="todo-name" id="todo-name" required>
+                    <label for="todo-desc">Todo Description:</label>
+                    <input type="text" name="todo-desc" id="todo-desc">
+                    <div class="all-time-container">
+                        <div class="date-time-container">
+                            <label for="todo-date">Date:</label>
+                            <input type="text" name="todo-date" id="todo-date" disabled>
+                            <label for="todo-time">Time:</label>
+                            <input type="time" name="todo-time" id="todo-time" step="300">
+                        </div>
+                        <div class="priority-container">
+                            <label for="todo-priority">Priority</label>
+                            <select name="todo-priority" id="todo-priority">
+                                <option value="undefined"></option>
+                                <option value="unimportant">unimportant</option>
+                                <option value="important">important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-box-container">
+                        <div class="modal-box modal-calendar">
+                            <div class="modal-calendar-header">
+                                <button type="button" class="modal-left"> <img src="./assets/arrow-left-bold.svg" alt="left"></button>
+                                <h1 class="modal-month">March</h1>
+                                <button type="button" class="modal-right"> <img src="./assets/arrow-right-bold.svg" alt="right"></button>
+                            </div>
+                            <div class="dayDisplay">Sun</div>
+                            <div class="dayDisplay">Mon</div>
+                            <div class="dayDisplay">Tue</div>
+                            <div class="dayDisplay">Wed</div>
+                            <div class="dayDisplay">Thu</div>
+                            <div class="dayDisplay">Fri</div>
+                            <div class="dayDisplay">Sat</div>
+                        </div>
+                        <div class="modal-box folder-box">
+                            <h1>Folders:</h1>
+                        </div>
+                    </div>
+                    <div class="todo-modal-buttons dialog-buttons">
+                        <button type="submit" class="todo-confirm">Confirm</button>
+                        <button type="button" class="todo-cancel">Cancel</button>
+                    </div>
+                    <dialog class="todo-error">
+                        <span>A todo with that name already exists!</span>
+                    </dialog>
         </div>
     </header>
     <main>
@@ -54,8 +104,8 @@
                         <p>Due on: 2/5/2026 at 4:30pm</p>
                         <p>Priority: <span class="urgent-text">Urgent</span></p>
                     </div>
-                    <div class="note-checkbox-container">
-                        <div class="checkboxes-container">
+                    <div class="modal-box-container">
+                        <div class="checkboxes-container modal-box">
                             <dialog class="new-checkbox-dialog new-dialog">
                                 <form action="">
                                     <label for="checkbox-name">Checkbox Name:</label>
@@ -104,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="notes-container">
+                        <div class="notes-container modal-box">
                             <button type="button" class="note-edit-button container-button">Edit Notes</button>
                             <p class="text-notes">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet repellendus unde id dignissimos. Corrupti officia, quibusdam nesciunt odit nostrum nihil qui veniam tempora. Impedit, quam. Saepe quos eos labore qui.</p>
                             <textarea class="hidden edit-notes"></textarea>

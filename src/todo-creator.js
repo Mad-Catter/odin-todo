@@ -6,7 +6,7 @@
 // 
 export default class Todo {
     complete = false;
-    constructor(title, desc, priority, dueDate, notes, checklist, folders) {
+    constructor(title, desc, priority, dueDate, time, notes, checklist, folders, ) {
         this.title = title;
         if (desc) {
             this.desc = desc;
@@ -17,6 +17,9 @@ export default class Todo {
         if (dueDate) {
             this.dueDate = dueDate;
         }
+        if (time) {
+            this.time = time;
+        }
         if (notes) {
             this.notes = notes;
         }
@@ -24,8 +27,9 @@ export default class Todo {
             this.checklist = checklist;
         }
         if (folders) {
-            this.folders = folders
+            this.folders = folders;
         }
+        
     }
     addToChecklist(check) {
         if (check in this.checklist) {

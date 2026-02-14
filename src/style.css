@@ -60,7 +60,7 @@ header > div > button {
     border-radius: 25px 25px 0 0;
     padding: 10px 5px 10px;
 }
-
+/* Form Dialog Section */
 .news {
     position: relative;
 }
@@ -239,20 +239,29 @@ li {
 .urgent-text {
     color: var(--urgent-color);
 }
+.important-text {
+    color: var(--important-color);
+}
 
+.unimportant-text {
+    color: var(--unimportant-color);
+}
+
+.undefined-text {
+    color: var(--undefined-color);
+}
 .date-container {
     display: flex;
     justify-content: space-between;
     padding: 5px 150px;
 }
 /* Checkboxes Section */
-.note-checkbox-container {
+.modal-box-container {
     display: flex;
     justify-content: space-around;
 }
 
-.checkboxes-container,
-.notes-container {
+.modal-box{
     border: 3px solid var(--container-border-color);
     border-radius: 10px;
     width: 500px;
@@ -270,11 +279,12 @@ li {
     justify-content: space-between;
 }
 
-.checkbox-body {
+.checkbox-body{
     display: flex;
     margin: 20px 0px;
 }
-.checkbox-body:hover {
+.checkbox-body:hover,
+.folder-item {
     cursor: pointer;
 }
 .marker {
@@ -309,7 +319,8 @@ li {
 .checkbox:hover .checkbox-buttons {
     display: flex;
 }
-.checkbox:hover {
+.checkbox:hover,
+.folder-item:hover {
     border: 1px rgba(0, 0, 0, 0.384) solid;
     border-left: none;
     border-right: none;
@@ -367,7 +378,7 @@ li {
 
 /* Calendar View Section */
 
-.calendar-viewer {
+.calendar-viewer, .modal-calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: 1fr;
@@ -375,9 +386,12 @@ li {
     grid-template-rows: 40px 50px;
     justify-items: center;
     align-items: center;
+}
+.calendar-viewer {
     height: calc(100vh - 80px)
 }
-.calendar-header {
+.calendar-header,
+.modal-calendar-header {
     grid-column: span 7;
     width: 100%;
     display: flex;
@@ -409,13 +423,15 @@ li {
     text-align: center;
     transition: all 0.2s;
 }
-.day:hover > p {
+.day:hover > p,
+.modal-day:hover > p {
     background-color: rgba(128, 128, 128, 0.37);
 }
 .today {
     background-color: var(--header-button-border);
 }
-.day:hover .today {
+.day:hover .today,
+.modal-day:hover .today {
     background-color: var(--header-button-border-lighter);
 }
 
@@ -445,4 +461,61 @@ li {
 }
 .todo-overflow:hover {
     cursor: pointer;
+}
+
+
+/* New Todo dialog section */
+.modal-box h1 {
+    color: white;
+}
+.todo-modal form {
+    display: flex;
+    flex-direction: column;
+}
+.todo-modal input,
+.todo-modal select {
+    width: 250px;
+}
+.all-time-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-calendar {
+    max-height: 300px;
+    min-height: 300px;
+    width: 500px;
+    overflow: hidden;
+}
+.modal-calendar button {
+    background: none;
+    border: none;
+}
+.modal-calendar-header button {
+    width: 25px;
+    
+}
+.modal-day,
+.modal-day p {
+    border-radius: 50%;
+
+}
+.modal-day {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-day p {
+    padding-top: 3px;
+    height: 30px;
+    width: 30px;
+}
+.folder-box {
+    padding: 10px 15px;
+}
+.folder-item {
+    display: flex;
+    padding: 20px 0;
 }
