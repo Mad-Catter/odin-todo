@@ -6,13 +6,12 @@ export default function createModal(todo, parent) {
     elementCreator("h3", modal, "", {textContent: todo.title});
     elementCreator("p", modal, "", {textContent: todo.desc});
     const dateContainer = elementCreator("div", modal, "date-container",);
-    // Again this needs to be changed to state the time in a more clean way.
     if (todo.time && todo.dueDate) {
-        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate} at ${todo.time}`});
+        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate.replaceAll("-","/")} at ${todo.time}`});
     } else if (todo.time) {
         elementCreator("p", dateContainer, "", {textContent: `Due at: ${todo.time}`});
     } else if (todo.dueDate) {
-        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate}`});
+        elementCreator("p", dateContainer, "", {textContent: `Due on: ${todo.dueDate.replaceAll("-","/")}`});
     } else {
         elementCreator("p", dateContainer);
     }

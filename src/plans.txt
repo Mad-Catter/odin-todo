@@ -64,9 +64,6 @@ Remaining needs {
     A display of what folders they are in
     A way to mark a todo as complete
   }
-  Card view {
-    Logic for showing how far away the due date is in simple terms.
-  }
   Currently my todo displays arent live {
     A potential fix is to have everything regenerate every time you click a new tab.
     Also keep the objects inside of their own object?  Dont think this will fix everything in its entireity, but exporting an array will only export a static copy

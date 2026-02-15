@@ -23,7 +23,7 @@ const trial = new Todo("Make Todo List",
 const secondTrial = new Todo("Making Fake Todo Lists",
     "This involes typing nonsense",
     "unimportant",
-    "2-6-2026",
+    "2-15-2026",
     "5:00am",
     "",
     {
@@ -47,6 +47,8 @@ const thirdTrial = new Todo("Finishing The program",
 // listOfTodos.push(secondTrial);
 // listOfTodos.push(thirdTrial);
 displayCard(trial);
+displayCard(secondTrial);
+displayCard(thirdTrial);
 
 
 const test = document.querySelector("h1")
