@@ -50,15 +50,12 @@ General needs {
 Currently The time cant have any spaces between the time and the am/pm or the calendar view may overflow.  
 
 Remaining needs {
-  Beautify the Create Todo modal.
-  Create a new time input if I dont respect my own time still.
   Figure out a way to hook everything up.  The new todo modal can create new todos but has no where to put them.
   I've decided on the folders being put on the objects.  I still need logic for folders
   folder logic {
-    a way to delete folders
-    A way to edit folder names
+    
     A way to only show todos of a certain folder
-    A way to add todos to a folder after todo creation. (And need to edit the folder creator to have todos).
+    Folder Dialog needs editing on appearance
   }
   todos {
     A display of what folders they are in
@@ -69,4 +66,11 @@ Remaining needs {
     Also keep the objects inside of their own object?  Dont think this will fix everything in its entireity, but exporting an array will only export a static copy
   }
   Still need a logo
+  Optional {
+    Create a new time input if I dont respect my own time still.
+    folders {
+      A way to edit folder names
+      (And need to edit the folder creator to have todos).
+    }
+  }
 }

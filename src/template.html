@@ -33,19 +33,23 @@
             <button type="button" class="new-todo">Create Todo</button>
             <dialog class="todo-modal modal">
                 <form action="">
-                    <label for="todo-name">Todo Name:</label>
-                    <input type="text" name="todo-name" id="todo-name" required>
-                    <label for="todo-desc">Todo Description:</label>
-                    <input type="text" name="todo-desc" id="todo-desc">
+                    <div class="name-desc-container">
+                        <label for="todo-name">Todo Name: *</label>
+                        <input type="text" name="todo-name" id="todo-name" required>
+                    </div>
+                    <div class="name-desc-container">
+                        <label for="todo-desc">Todo Description:</label>
+                        <input type="text" name="todo-desc" id="todo-desc">
+                    </div>
                     <div class="all-time-container">
                         <div class="date-time-container">
                             <label for="todo-date">Date:</label>
                             <input type="text" name="todo-date" id="todo-date" disabled>
-                            <label for="todo-time">Time:</label>
+                            <label for="todo-time" class="time-label">Time:</label>
                             <input type="time" name="todo-time" id="todo-time" step="300">
                         </div>
                         <div class="priority-container">
-                            <label for="todo-priority">Priority</label>
+                            <label for="todo-priority">Priority:</label>
                             <select name="todo-priority" id="todo-priority">
                                 <option value="undefined"></option>
                                 <option value="unimportant">unimportant</option>

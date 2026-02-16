@@ -46,7 +46,7 @@ const folderBox = document.querySelector(".folder-box")
 const listOfFolderNames = Object.keys(listOfFolders);
 for (let i = 0; i < listOfFolderNames.length; i++) {
     const folderName = listOfFolderNames[i];
-    const folderItem = elementCreator("div",folderBox, [folderName, "folder-item"]);
+    const folderItem = elementCreator("div",folderBox, [folderName.replaceAll(" ", "-"), "folder-item"]);
     const marker = elementCreator("div", folderItem, "marker");
     elementCreator ("p", folderItem, "", {textContent: folderName});
     

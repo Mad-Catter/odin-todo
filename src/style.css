@@ -110,11 +110,10 @@ main {
     background-color: var(--header-color);
     width: 250px;
 }
-.sidebar li, .sidebar p, .sidebar h6 {
+ .sidebar p, .sidebar li, .sidebar h6 {
     color: white;
-    
-    
-    
+}
+.sidebar li,  .sidebar h6 {
     margin-top: 20px;
 }
 .sidebar h6 {
@@ -122,10 +121,40 @@ main {
     font-size: 1.5rem;
     font-weight: bold;
 }
-li {
+.listed-folder {
     list-style: none;
     font-size: 1.25rem;
-    margin-left: 15%;
+    padding-left: 7.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 7.5%;
+}
+.listed-folder p,
+.folder-buttons button {
+    cursor: pointer;
+}
+.folder-buttons {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    width: 60px
+}
+.listed-folder:hover .folder-buttons {
+    display: flex;
+}
+.folder-buttons button {
+    background: none;
+    width: 25px;
+    max-height: 25px;
+    height: auto;
+    border: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.list-of-todos-dialog {
+    background-color: var(--header-button-color);
+    border-color: var(--header-button-border);
 }
 
 /* Card Viewer Section */
@@ -320,7 +349,8 @@ li {
     display: flex;
 }
 .checkbox:hover,
-.folder-item:hover {
+.folder-item:hover,
+.listed-folder:hover {
     border: 1px rgba(0, 0, 0, 0.384) solid;
     border-left: none;
     border-right: none;
@@ -464,7 +494,7 @@ li {
 }
 
 
-/* New Todo dialog section */
+/* New Todo modal section */
 .modal-box h1 {
     color: white;
 }
@@ -475,6 +505,16 @@ li {
 .todo-modal input,
 .todo-modal select {
     width: 250px;
+    font-size: inherit;
+    border-radius: 5px;
+}
+.todo-modal label {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.name-desc-container {
+    padding: 1.25% 0;
 }
 .all-time-container {
     display: flex;
@@ -518,4 +558,18 @@ li {
 .folder-item {
     display: flex;
     padding: 20px 0;
+}
+#todo-time {
+    width: revert;
+}
+.date-time-container,
+.priority-container {
+    width: 500px;
+    padding-bottom: 0.5%;
+}
+.date-container {
+    text-align: left;
+}
+.date-time-container label{
+    padding-left: 2%;
 }

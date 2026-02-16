@@ -1,6 +1,6 @@
 import elementCreator from "./element-creator.js";
 import pencilImg from "../src/assets/pencil-outline.svg"
-import {enableEditCheckbox, showEditField, enableToggleCheckbox, enableDeleteCheckbox, enableEditNotes, enableModal, showCheckboxDialog, closeErrorDialog, enableCancelButton, enableConfirmButton} from "./interactive-modal.js";
+import {interactiveModal} from "./interactive-modal.js";
 export default function createModal(todo, parent) {
     const modal = elementCreator("dialog", parent, "modal");
     elementCreator("h3", modal, "", {textContent: todo.title});
@@ -49,10 +49,10 @@ export default function createModal(todo, parent) {
         const deleteCheckboxButton = elementCreator("button", checkboxButtons, "delete-checkbox", {type: "button", textContent: "X"});
         if (todo.checklist[key] === true) marker.classList.add("yes");
 
-        showEditField(editCheckboxButton, checkboxEditInput, checkboxText);
-        enableEditCheckbox(checkboxEditInput, checkboxText, todo, key);
-        enableToggleCheckbox(checkboxBody, marker, todo, checkboxText);
-        enableDeleteCheckbox(deleteCheckboxButton, checkbox, todo, checkboxText);
+        interactiveModal.showEditField(editCheckboxButton, checkboxEditInput, checkboxText);
+        interactiveModal.enableEditCheckbox(checkboxEditInput, checkboxText, todo, key);
+        interactiveModal.enableToggleCheckbox(checkboxBody, marker, todo, checkboxText);
+        interactiveModal.enableDeleteCheckbox(deleteCheckboxButton, checkbox, todo, checkboxText);
     }
     const ArrayOfTodoCheckboxes = Object.keys(todo.checklist);
     for (let i = 0; i < ArrayOfTodoCheckboxes.length; i++) {
@@ -64,12 +64,12 @@ export default function createModal(todo, parent) {
     const noteEditArea = elementCreator("textarea", notesContainer, "hidden edit-notes");
 
     
-    showEditField(noteEditButton, noteEditArea, textNotes);
-    enableEditNotes(noteEditArea, textNotes, todo);
-    enableModal(parent, modal);
+    interactiveModal.showEditField(noteEditButton, noteEditArea, textNotes);
+    interactiveModal.enableEditNotes(noteEditArea, textNotes, todo);
+    interactiveModal.enableModal(parent, modal);
 
-    showCheckboxDialog(newCheckboxButton, newCheckboxDialog, modal);
-    closeErrorDialog(modal, newCheckboxDialog, checkboxError);
-    enableCancelButton(checkboxCancel, checkboxName, newCheckboxDialog);
-    enableConfirmButton(checkboxConfirm, checkboxName, todo, checkboxError, newCheckboxDialog, createCheckbox);
+    interactiveModal.showCheckboxDialog(newCheckboxButton, newCheckboxDialog, modal);
+    interactiveModal.closeErrorDialog(modal, newCheckboxDialog, checkboxError);
+    interactiveModal.enableCancelButton(checkboxCancel, checkboxName, newCheckboxDialog);
+    interactiveModal.enableConfirmButton(checkboxConfirm, checkboxName, todo, checkboxError, newCheckboxDialog, createCheckbox);
 }

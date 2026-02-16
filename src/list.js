@@ -1,10 +1,12 @@
 import Todo from "./todo-creator.js";
 
 const listOfFolders = {
-    testFolder: [],
-    secondTestFolder: [],
+    "All Todos": [],
+    "Complete Todos": [],
 };
-const listOfTodos = [];
+const listOfTodos = {
+
+};
 
 const trial = new Todo("Make Todo List",
      "This involves coding a todo list",
@@ -41,7 +43,7 @@ const thirdTrial = new Todo("Finishing The program",
     [],
 )
 // Think this need to be changed.  It is not very OOP
-listOfTodos.push(trial);
-listOfTodos.push(secondTrial);
-listOfTodos.push(thirdTrial);
+listOfTodos.trial = trial;
+listOfTodos.secondTrial = secondTrial;
+listOfTodos.thirdTrial = thirdTrial;
 export {listOfFolders, listOfTodos}

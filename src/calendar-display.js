@@ -25,8 +25,9 @@ export function displayCalendar(date) {
         }
         // This checks each loop if there are any todos on a certain day and if so, an element representing the todo is made.
         // This is likely a very preformance unfriendly approach.
-        for (let j = 0; j < listOfTodos.length; j++) {
-            const todo = listOfTodos[j];
+        const listOfTodosKeys = Object.keys(listOfTodos)
+        for (let j = 0; j < listOfTodosKeys.length; j++) {
+            const todo = listOfTodos[listOfTodosKeys[j]];
             if (todo.dueDate === array[i].fullDate) {
                 const todoDay = elementCreator("div", day, ["todo-day", todo.priority]);
                 elementCreator("p", todoDay, "todo-day-title", {textContent: todo.title});
