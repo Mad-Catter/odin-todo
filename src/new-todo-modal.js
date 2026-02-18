@@ -41,20 +41,8 @@ function displayChangedModalCalendar(change) {
     modalChangedDate = setMonth(now, getMonth(now) + modalOffset);
     displayModalCalendar(modalChangedDate);
 }
+// This 100% needs to be moved.
 
-const folderBox = document.querySelector(".folder-box")
-const listOfFolderNames = Object.keys(listOfFolders);
-for (let i = 0; i < listOfFolderNames.length; i++) {
-    const folderName = listOfFolderNames[i];
-    const folderItem = elementCreator("div",folderBox, [folderName.replaceAll(" ", "-"), "folder-item"]);
-    const marker = elementCreator("div", folderItem, "marker");
-    elementCreator ("p", folderItem, "", {textContent: folderName});
-    
-    folderItem.addEventListener("click", e => {
-        marker.classList.toggle("yes");
-        folderItem.classList.toggle("confirm");
-    })
-}
 
 // This might need to be moved, I want all the buttons to be together
 const todoModal = document.querySelector(".todo-modal")

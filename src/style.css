@@ -129,6 +129,7 @@ main {
     align-items: center;
     justify-content: space-between;
     padding: 10px 0 10px 7.5%;
+    position: relative;
 }
 .listed-folder p,
 .folder-buttons button {
@@ -153,8 +154,42 @@ main {
     text-align: center;
 }
 .list-of-todos-dialog {
+    display: none;
+}
+.list-of-todos-dialog:open {
+    width: 300px;
     background-color: var(--header-button-color);
     border-color: var(--header-button-border);
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    overflow: auto;
+    position: absolute;
+    left: 180px;
+    top: -10px;
+    z-index: 5;
+}
+.todo-dialog-line {
+    display: flex;
+    margin: 5px 8px;
+    align-items: center;
+}
+.todo-dialog-line:hover {
+    cursor: pointer;
+}
+.todo-dialog-line button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(100%-20px);
+}
+.todo-dialog-line .marker {
+    position: static;
+    min-width: 20px;
 }
 
 /* Card Viewer Section */
