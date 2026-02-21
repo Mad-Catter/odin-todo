@@ -28,11 +28,12 @@ export default class Todo {
         }
         if (folders) {
             this.folders = folders;
+            folders.push("all-todos");
         }
         
     }
     addToChecklist(check) {
-        if (check in this.checklist) {
+        if ((this.checklist !== "") && (check in this.checklist)) {
             return "error: repeat"
         } else if (check === "") {
             return "error: blank"
@@ -56,5 +57,14 @@ export default class Todo {
     }
     rewriteNotes(content) {
         this.notes = content;
+    }
+    toggleCompletion() {
+        if (!this.complete) {
+            this.complete = true;
+            this.folders.push("complete-todos");
+        } else {
+            this.complete = false;
+            this.folders.splice(this.folders.indexOf("complete-todos"),1)
+        }
     }
 }

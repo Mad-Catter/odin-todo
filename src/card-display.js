@@ -1,5 +1,5 @@
 import elementCreator from "./element-creator.js";
-import { compareDates } from "../date-compare.js";
+import { compareDates } from "./date-compare.js";
 import createModal from "./modal-display.js";
 export default function createCard(todo) {
     const body = document.querySelector("body")

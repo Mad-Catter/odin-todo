@@ -1,12 +1,12 @@
-import { listOfFolders, listOfTodos} from "./list.js";
+import { listOfFolders, listOfTodos, listOfActiveFolders} from "./list.js";
 import { generateFolderList } from "./folder-display.js";
-import { displayCalendar } from "./calendar-display.js";
+import { displayCalendar, displayModalCalendar } from "./calendar-display.js";
 import { setMonth, getMonth} from "date-fns";
 import elementCreator from "./element-creator.js";
 import createCard from "./card-display.js";
 export const generator = {
     offset: 0,
-
+    modalOffset: 0,
     generateFolderBoxContent() {
         const folderBox = document.querySelector(".folder-box")
         folderBox.replaceChildren();
@@ -25,11 +25,12 @@ export const generator = {
         }
     },
     generateFolderList: generateFolderList,
-    generateCardDisplay(list) {
+    generateCardDisplay() {
         const cardViewer = document.querySelector(".card-viewer");
         cardViewer.replaceChildren();
         const listOfTodoNames = Object.keys(listOfTodos);
-        if (!list || (list.includes("All Todos"))) {
+        const listOfActiveFolderNames = Object.keys(listOfActiveFolders);
+        if (listOfActiveFolderNames.includes("all-todos")) {
             for (let i = 0; i < listOfTodoNames.length; i++) {
                 const todo = listOfTodos[listOfTodoNames[i]];
                 createCard(todo);
@@ -37,11 +38,12 @@ export const generator = {
         } else {
             for (let i = 0; i < listOfTodoNames.length; i++) {
                 const todo = listOfTodos[listOfTodoNames[i]];
-                if (todo.folders.some(folder => list.includes(folder))) {
-                    createCard(todo)
+                if (todo.folders.some(folder => listOfActiveFolderNames.includes(folder))) {
+                    createCard(todo);
                 }
             }
         }
+        
     },
     generateCalendar(change) {
         const now = new Date();
@@ -51,10 +53,27 @@ export const generator = {
         if (change === "decrease") {
             this.offset--
         }
+        this.modalOffset = this.offset;
         const changedDate = setMonth(now, getMonth(now) + this.offset);
         displayCalendar(changedDate);
     },
+    generateModalCalendar(change) {
+        const now = new Date();
+        if (change === "increase") {
+            this.modalOffset++
+        } else if (change === "decrease") {
+            this.modalOffset--
+        }
+        const modalChangedDate = setMonth(now, getMonth(now) + this.modalOffset);
+        displayModalCalendar(modalChangedDate);
+    },
+    addToFolderList(folder) {
+        listOfFolders[folder] = folder;
+        this.generateFolderList();
+        this.generateFolderBoxContent();
+    },
     generateAll() {
+        this.generateModalCalendar();
         this.generateCalendar();
         this.generateCardDisplay();
         this.generateFolderBoxContent();

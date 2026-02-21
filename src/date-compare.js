@@ -1,4 +1,4 @@
-import { differenceInHours, differenceInDays, differenceInWeeks, differenceInMonths, differenceInYears,  } from "date-fns";
+import { differenceInCalendarDays, differenceInDays, differenceInWeeks, differenceInMonths, differenceInYears,  } from "date-fns";
 
 export function compareDates(date, time) {
     const now = new Date();
@@ -46,7 +46,7 @@ export function compareDates(date, time) {
             return `Due: ${weeks * -1} weeks ago`
         }
     }
-    const days = differenceInDays(date, now);
+    const days = differenceInCalendarDays(date, now);
     if (days > 0) {
         if (days === 1) {
             return "Due: Tomorrow"
@@ -64,7 +64,7 @@ export function compareDates(date, time) {
     }
     if (time) {
         
-        let timeHours = time.split(":")[0]
+        let timeHours = Number(time.split(":")[0])
         if (time.includes("pm")) timeHours += 12;
         console.log(now.getHours)
         const hours = timeHours - now.getHours()

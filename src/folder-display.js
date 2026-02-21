@@ -9,9 +9,12 @@ function generateFolderList() {
     sideList.replaceChildren();
     const listOfFolderNames = Object.keys(listOfFolders);
     for (let i = 0; i < listOfFolderNames.length; i++) {
+        
         const name = listOfFolderNames[i];
         const li = elementCreator("li", sideList, [name.replaceAll(" ", "-").toLocaleLowerCase(), "listed-folder"]);
-        elementCreator("p", li,"", {textContent: name});
+        const markerNText = elementCreator("div", li, "marker-text")
+        const marker = elementCreator("div", markerNText, "marker")
+        elementCreator("p", markerNText,"", {textContent: name});
 
         const buttons = elementCreator("div", li, "folder-buttons");
         const addButton = elementCreator("button", buttons, "", {type: "button"});
@@ -23,12 +26,9 @@ function generateFolderList() {
         enableFolder.addButton(addButton, todoDialog);
         enableFolder.dialogContent(todoDialog, li);
         enableFolder.deleteButton(deleteButton, li)
+        enableFolder.activeFolder(li, marker)
     }
 }
-function addToFolderList(folder) {
-    listOfFolders[folder] = folder;
-    generateFolderList();
-}
-generateFolderList()
-export {addToFolderList, generateFolderList}
+
+export {generateFolderList}
 export default {}

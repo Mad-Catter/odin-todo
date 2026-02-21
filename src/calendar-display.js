@@ -2,6 +2,7 @@ import {generateMonthArray} from "./calendar-gen.js";
 import elementCreator from "./element-creator.js";
 import { isSameDay } from "date-fns";
 import { listOfTodos } from "./list.js";
+import { listOfActiveFolders } from "./list.js";
 import createModal from "./modal-display.js"
 // The function takes a date object and gives it to generateMonthArray to get an array of all the days in the month of the date object.
 export function displayCalendar(date) {
@@ -28,7 +29,8 @@ export function displayCalendar(date) {
         const listOfTodosKeys = Object.keys(listOfTodos)
         for (let j = 0; j < listOfTodosKeys.length; j++) {
             const todo = listOfTodos[listOfTodosKeys[j]];
-            if (todo.dueDate === array[i].fullDate) {
+            const listOfActiveFolderNames = Object.keys(listOfActiveFolders)
+            if ((todo.dueDate === array[i].fullDate) && (array[i].fullDate) && (todo.folders.some(folder => listOfActiveFolderNames.includes(folder)))) {
                 const todoDay = elementCreator("div", day, ["todo-day", todo.priority]);
                 elementCreator("p", todoDay, "todo-day-title", {textContent: todo.title});
                 if (todo.time) elementCreator("p", todoDay, "", {textContent: todo.time})

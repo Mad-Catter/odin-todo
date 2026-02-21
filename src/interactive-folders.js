@@ -1,6 +1,32 @@
-import { listOfFolders, listOfTodos } from "./list.js";
+import { listOfFolders, listOfTodos, listOfActiveFolders } from "./list.js";
+import { generator } from "./generator.js";
 import elementCreator from "./element-creator.js";
 export const enableFolder = {
+    activeFolder (folder, marker) {
+        const allMarker = document.querySelector(".all-marker");
+        const folderName = folder.classList[0];
+        
+        folder.addEventListener("click", e => {
+            if (listOfActiveFolders["all-todos"] !== undefined) {
+                allMarker.classList.remove("yes");
+                delete listOfActiveFolders["all-todos"];
+            }
+            if (listOfActiveFolders[folderName] === undefined) {
+                listOfActiveFolders[folderName] = folderName;
+                marker.classList.add("yes");
+            } else {
+                delete listOfActiveFolders[folderName]
+                marker.classList.remove("yes");
+            }
+            if (Object.keys(listOfActiveFolders) == "") {
+                allMarker.classList.add("yes");
+                listOfActiveFolders["all-todos"] = "all-todos";
+            }
+            generator.generateCalendar();
+            generator.generateCardDisplay();
+        })
+        
+    },
     addButton (button, dialog) {
         button.addEventListener("click", e => {
             e.stopPropagation();
@@ -34,6 +60,11 @@ export const enableFolder = {
                 const currentFolder = listOfFolderNames[j]
                 if (currentFolder.toLowerCase() === folderName.toLowerCase().replaceAll("-", " ")) {
                     delete listOfFolders[currentFolder];
+                    delete listOfActiveFolders[currentFolder];
+                    if (Object.keys(listOfActiveFolders) == "") {
+                        allMarker.classList.add("yes");
+                        listOfActiveFolders["all-todos"] = "all-todos";
+                    }
                 }
             }
             parent.remove();
@@ -59,7 +90,58 @@ export const enableFolder = {
                     marker.classList.remove("yes");
                     todoFolders.splice(todoFolders.indexOf(folderName),1)
                 }
+                generator.generateCalendar();
+                generator.generateCardDisplay();
             })
         }
     }
+}
+function enableAllTodos() {
+    const allMarker = document.querySelector(".all-marker");
+    const allTodos = document.querySelector(".all-todos");
+    allTodos.addEventListener("click", e => {
+        const listOfActiveFolderNames = Object.keys(listOfActiveFolders)
+        if (!(listOfActiveFolderNames.includes("all-todos"))) {
+            const markerList = document.querySelectorAll(".marker-text > .marker");
+            for (const marker of markerList.values()) {
+                marker.classList.remove("yes");
+            }
+            for (let i = 0; i < listOfActiveFolderNames.length; i++) {
+                const currentFolder = listOfActiveFolderNames[i];
+                delete listOfActiveFolders[currentFolder];
+            }
+            allMarker.classList.add("yes");
+            listOfActiveFolders["all-todos"] = "all-todos";
+        }
+        generator.generateCalendar();
+        generator.generateCardDisplay();
+    })
+}
+function enableCompleteTodos() {
+    const completeTodos = document.querySelector(".complete-todos");
+    const completeMarker = document.querySelector(".complete-marker");
+    const allMarker = document.querySelector(".all-marker");
+    completeTodos.addEventListener("click", e => {
+        if (listOfActiveFolders["all-todos"] !== undefined) {
+            allMarker.classList.remove("yes");
+            delete listOfActiveFolders["all-todos"];
+        }
+        if (listOfActiveFolders["complete-todos"] === undefined) {
+            listOfActiveFolders["complete-todos"] = "complete-todos";
+            completeMarker.classList.add("yes");
+        } else {
+            delete listOfActiveFolders["complete-todos"]
+            completeMarker.classList.remove("yes");
+        }
+        if (Object.keys(listOfActiveFolders) == "") {
+            allMarker.classList.add("yes");
+            listOfActiveFolders["all-todos"] = "all-todos";
+        }
+        generator.generateCalendar();
+        generator.generateCardDisplay();
+    })
+}
+export function enableDefaultFolders() {
+    enableAllTodos();
+    enableCompleteTodos();
 }

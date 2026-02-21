@@ -82,3 +82,20 @@ Things to regenerate {
   the card view
   
 }
+
+I could change the error popup to be a bit more clear that is an error, some red colors perhaps.
+
+{
+  A way to mark todos as complete.
+  Change the all todos and complete todos. So that they can't be deleted.
+
+}
+
+super optional {
+  A confirm button on deleting todos.
+}
+
+Last needs today {
+  add a complete button
+  Makre sure toggle complete works
+}

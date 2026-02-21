@@ -32,7 +32,7 @@ export default function createModal(todo, parent) {
     const checkboxConfirm = elementCreator("button", checkboxDialogButtons, "checkbox-confirm", {type: "button", textContent: "Confirm"});
     const checkboxCancel = elementCreator("button", checkboxDialogButtons, "checkbox-cancel", {type: "button", textContent: "Cancel"});
 
-    const checkboxError = elementCreator("dialog", checkboxForm, "checkbox-error");
+    const checkboxError = elementCreator("dialog", checkboxForm, "checkbox-error error-dialog");
     elementCreator("span", checkboxError, "", "Unknown Error!");
 
     const newCheckboxButton = elementCreator("button", checkboxesContainer, "new-checkbox-button container-button", {type: "button", textContent: "New Checkbox"});
@@ -54,9 +54,11 @@ export default function createModal(todo, parent) {
         interactiveModal.enableToggleCheckbox(checkboxBody, marker, todo, checkboxText);
         interactiveModal.enableDeleteCheckbox(deleteCheckboxButton, checkbox, todo, checkboxText);
     }
-    const ArrayOfTodoCheckboxes = Object.keys(todo.checklist);
-    for (let i = 0; i < ArrayOfTodoCheckboxes.length; i++) {
-        createCheckbox(ArrayOfTodoCheckboxes[i]);
+    if (todo.checklist) {
+        const ArrayOfTodoCheckboxes = Object.keys(todo.checklist);
+        for (let i = 0; i < ArrayOfTodoCheckboxes.length; i++) {
+            createCheckbox(ArrayOfTodoCheckboxes[i]);
+        }
     }
     const notesContainer = elementCreator("div", noteCheckboxContainer, "notes-container modal-box");
     const noteEditButton = elementCreator("button", notesContainer, "note-edit-button container-button", {textContent: "Edit Notes"});

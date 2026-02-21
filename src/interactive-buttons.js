@@ -1,5 +1,5 @@
 import {listOfFolders} from "./list.js"
-import { addToFolderList } from "./folder-display.js";
+import { generator} from "./generator.js";
 
 const body = document.querySelector("body");
 
@@ -56,7 +56,7 @@ folderConfirm.addEventListener("click", e => {
         folderErrorDialog.textContent = "You cant have a folder with no name!";
         folderErrorDialog.show();
     } else{
-        addToFolderList(folderName.value);
+        generator.addToFolderList(folderName.value);
         folderName.value = "";
         folderDialog.close();
         folderErrorDialog.close();
@@ -66,17 +66,22 @@ folderConfirm.addEventListener("click", e => {
 
 newTodo.addEventListener("click", e => {
     e.stopPropagation();
+    generator.generateModalCalendar();
     todoModal.showModal();
     folderDialog.close();
 })
 todoModal.addEventListener("click", e => {
     e.stopPropagation();
+    todoErrorDialog.close();
 })
 
 
 todoCancel.addEventListener("click", e => {
     todoName.value = "";
     todoModal.close();
+})
+todoConfirm.addEventListener("click", e => {
+    e.stopPropagation();
 })
 // todoConfirm.addEventListener("click", e => {
 // //     e.preventDefault();
@@ -113,10 +118,12 @@ todoModal.addEventListener("click", e => {
 cardViewButton.addEventListener("click", e => {
     cardViewer.classList.remove("hidden");
     calendarViewer.classList.add("hidden");
+    generator.generateCardDisplay();
 })
 calendarViewButton.addEventListener("click", e => {
     calendarViewer.classList.remove("hidden")
     cardViewer.classList.add("hidden");
+    generator.generateCalendar();
 })
 
 export default {}

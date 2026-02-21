@@ -1,13 +1,15 @@
 import Todo from "./todo-creator.js";
 
 const listOfFolders = {
-    "All Todos": [],
-    "Complete Todos": [],
+    "My First Folder": [],
+    "My Second Folder": [],
 };
 const listOfTodos = {
 
 };
-
+const listOfActiveFolders = {
+    "all-todos" : "all-todos",
+}
 const trial = new Todo("Make Todo List",
      "This involves coding a todo list",
      "urgent",
@@ -46,4 +48,4 @@ const thirdTrial = new Todo("Finishing The program",
 listOfTodos.trial = trial;
 listOfTodos.secondTrial = secondTrial;
 listOfTodos.thirdTrial = thirdTrial;
-export {listOfFolders, listOfTodos}
+export {listOfFolders, listOfTodos, listOfActiveFolders}
