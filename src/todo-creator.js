@@ -6,6 +6,7 @@
 // 
 export default class Todo {
     complete = false;
+    oldPriority = "";
     constructor(title, desc, priority, dueDate, time, notes, checklist, folders, ) {
         this.title = title;
         if (desc) {
@@ -62,9 +63,20 @@ export default class Todo {
         if (!this.complete) {
             this.complete = true;
             this.folders.push("complete-todos");
+            this.oldPriority = this.priority;
+            this.priority = "complete";
         } else {
             this.complete = false;
             this.folders.splice(this.folders.indexOf("complete-todos"),1)
+            this.priority = this.oldPriority;
+            this.oldPriority = "";
+        }
+    }
+    isComplete() {
+        if (this.complete) {
+            return true
+        } else {
+            return false
         }
     }
 }

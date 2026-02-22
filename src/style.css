@@ -13,6 +13,7 @@
     --important-color: hsl(64, 93%, 45%);
     --unimportant-color: hsl(103, 68%, 44%);
     --undefined-color: hsl(103, 6%, 77%);
+    --complete-color: hsl(122,76%,62%);
     --container-color: hsl(177, 52%, 41%);
     --container-border-color: hsl(271, 64%, 38%);
 }
@@ -169,13 +170,14 @@ main {
     width: 300px;
     background-color: var(--header-button-color);
     border-color: var(--header-button-border);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     height: 170px;
     overflow: auto;
     position: absolute;
-    left: 180px;
-    top: -10px;
+    left: 230px;
+    top: 10px;
     z-index: 5;
 }
 .todo-dialog-line {
@@ -279,6 +281,9 @@ main {
 .undefined {
     background-color: var(--undefined-color);
 }
+.complete {
+    background-color: var(--complete-color);
+}
 
 /* Modal Section */
 
@@ -325,6 +330,9 @@ main {
 
 .undefined-text {
     color: var(--undefined-color);
+}
+.complete-text {
+    color: var(--complete-color)
 }
 .date-container {
     display: flex;
@@ -452,7 +460,31 @@ main {
     top: 90px;
 }
 
-
+.complete-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    border: solid 3px var(--container-border-color);
+    background-color: var(--container-color);
+    padding: 6px;
+    border-top: none;
+    border-left: none;
+    border-radius: 5px 0px 0px 0px;
+}
+.complete-box:hover {
+    cursor: pointer;
+}
+.complete-box button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.complete-box .marker {
+    top: 5px;
+}
 /* Calendar View Section */
 
 .calendar-viewer, .modal-calendar {

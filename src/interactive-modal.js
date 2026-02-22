@@ -1,4 +1,5 @@
 import { showErrorDialog } from "./error-processor.js";
+import { generator } from "./generator.js";
 
 const interactiveModal = {
      showEditField(button, editField, textField) {
@@ -115,6 +116,23 @@ const interactiveModal = {
             }
         })
     },
+    preventCalendarScrolling(modal) {
+        modal.addEventListener("wheel", e => {
+            e.stopPropagation();
+        })
+    },
+    enableCompleteButton(marker, box, todo, priority, dueBox) {
+        box.addEventListener("click", e => {
+            marker.classList.toggle("yes");
+            todo.toggleCompletion();
+            priority.textContent = todo.priority.charAt(0).toUpperCase() + todo.priority.slice(1);
+            priority.removeAttribute("class");
+            priority.classList.add(`${todo.priority}-text`);
+            if (dueBox) {
+                dueBox.classList.toggle("hidden");
+            }
+        })
+    }
 }
 
 export {interactiveModal}

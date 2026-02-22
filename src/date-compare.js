@@ -66,7 +66,6 @@ export function compareDates(date, time) {
         
         let timeHours = Number(time.split(":")[0])
         if (time.includes("pm")) timeHours += 12;
-        console.log(now.getHours)
         const hours = timeHours - now.getHours()
         if (hours > 0) {
             if (hours === 1) {

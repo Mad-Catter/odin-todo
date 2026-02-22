@@ -1,8 +1,14 @@
 import elementCreator from "./element-creator.js";
 import pencilImg from "../src/assets/pencil-outline.svg"
 import {interactiveModal} from "./interactive-modal.js";
-export default function createModal(todo, parent) {
+export default function createModal(todo, parent, dueBox) {
     const modal = elementCreator("dialog", parent, "modal");
+
+    const completeBox = elementCreator("div", modal, "complete-box");
+    const completeMarker = elementCreator("div", completeBox, "marker");
+    if (todo.isComplete()) completeMarker.classList.add("yes");
+    const completeButton = elementCreator("button", completeBox, "", {type: "button", textContent: "Complete"})
+    
     elementCreator("h3", modal, "", {textContent: todo.title});
     elementCreator("p", modal, "", {textContent: todo.desc});
     const dateContainer = elementCreator("div", modal, "date-container",);
@@ -19,7 +25,7 @@ export default function createModal(todo, parent) {
 
     const spanParent = elementCreator("p", dateContainer, "", {textContent: "Priority: "});
     const capPriority = todo.priority.charAt(0).toUpperCase() + todo.priority.slice(1);
-    elementCreator("span", spanParent, `${todo.priority}-text`, {textContent: capPriority});
+    const priority = elementCreator("span", spanParent, `${todo.priority}-text`, {textContent: capPriority});
 
     const noteCheckboxContainer = elementCreator("div", modal, "modal-box-container");
     const checkboxesContainer = elementCreator("div", noteCheckboxContainer, "checkboxes-container modal-box");
@@ -65,10 +71,12 @@ export default function createModal(todo, parent) {
     const textNotes = elementCreator("p", notesContainer, "text-notes", {textContent: todo.notes});
     const noteEditArea = elementCreator("textarea", notesContainer, "hidden edit-notes");
 
+    interactiveModal.enableCompleteButton(completeMarker, completeBox, todo, priority, dueBox);
     
     interactiveModal.showEditField(noteEditButton, noteEditArea, textNotes);
     interactiveModal.enableEditNotes(noteEditArea, textNotes, todo);
     interactiveModal.enableModal(parent, modal);
+    interactiveModal.preventCalendarScrolling(modal);
 
     interactiveModal.showCheckboxDialog(newCheckboxButton, newCheckboxDialog, modal);
     interactiveModal.closeErrorDialog(modal, newCheckboxDialog, checkboxError);
