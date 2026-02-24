@@ -1,6 +1,6 @@
 import { showErrorDialog } from "./error-processor.js";
 import { generator } from "./generator.js";
-
+import { listOfTodos } from "./list.js";
 const interactiveModal = {
      showEditField(button, editField, textField) {
         button.addEventListener("click", e => {
@@ -131,6 +131,41 @@ const interactiveModal = {
             if (dueBox) {
                 dueBox.classList.toggle("hidden");
             }
+            // complete-todos appears to be added twice for some reason but still gets removed with this single line.
+            if (todo.folders.includes("all-todos")) {
+                todo.folders.push("complete-todos");
+                todo.folders.splice(todo.folders.indexOf("all-todos"),1);
+            } else {
+                todo.folders.push("all-todos");
+                todo.folders.splice(todo.folders.indexOf("complete-todos"),1);
+            }
+            generator.generateFolderList();
+        })
+    },
+    enableDeleteDialog(button, dialog, modal) {
+        button.addEventListener("click", e => {
+            e.stopPropagation();
+            dialog.show();
+        })
+        modal.addEventListener("click", e => {
+            dialog.close();
+        })
+        dialog.addEventListener("click", e=> {
+            e.stopPropagation();
+        })
+    },
+    enableDeleteDialogButtons(confirm, cancel, dialog, todo) {
+        cancel.addEventListener("click", e => {
+            dialog.close();
+        })
+        confirm.addEventListener("click", e => {
+            for (const key in listOfTodos) {
+                if (listOfTodos[key] === todo) {
+                    delete listOfTodos[key];
+                    break;
+                }
+            }
+            generator.generateAll();
         })
     }
 }

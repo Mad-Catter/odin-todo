@@ -21,6 +21,12 @@ const cardViewButton = document.querySelector(".card-view");
 const cardViewer = document.querySelector(".card-viewer");
 const calendarViewButton = document.querySelector(".calendar-view");
 const calendarViewer = document.querySelector(".calendar-viewer")
+const logoMarkers = document.querySelectorAll(".logo-marker");
+for (const marker of logoMarkers) {
+    marker.addEventListener("click", e => {
+        marker.classList.toggle("yes");
+    })
+}
 
 
 body.addEventListener("click", e => {

@@ -19,13 +19,18 @@ function generateFolderList() {
         const buttons = elementCreator("div", li, "folder-buttons");
         const addButton = elementCreator("button", buttons, "", {type: "button"});
         elementCreator("img", addButton, "", {src: plusImg, alt: "add"});
-        const deleteButton = elementCreator("button", buttons, "", {type: "button", textContent: "X"})
+        const deleteDialogButton = elementCreator("button", buttons, "", {type: "button", textContent: "X"});
+        const deleteDialog = elementCreator("dialog", li, "delete-dialog folder-delete-dialog");
+        elementCreator("p", deleteDialog, "", {textContent: "Delete Folder?"});
+        const confirmCancelContainer = elementCreator("div", deleteDialog, "confirm-delete-container")
+        const confirmButton = elementCreator("button", confirmCancelContainer, "", {type: "button", textContent: "Confirm"});
+        const cancelButton = elementCreator("button", confirmCancelContainer, "", {type: "button", textContent: "Cancel"});
 
         const todoDialog = elementCreator("dialog", li, "list-of-todos-dialog");
         
         enableFolder.addButton(addButton, todoDialog);
         enableFolder.dialogContent(todoDialog, li);
-        enableFolder.deleteButton(deleteButton, li)
+        enableFolder.deleteDialog(deleteDialogButton, deleteDialog, confirmButton, cancelButton, li)
         enableFolder.activeFolder(li, marker)
     }
 }

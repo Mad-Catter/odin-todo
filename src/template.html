@@ -7,10 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- <link rel="icon" type="image/x-icon" href="./assets/favicon_io/favicon.ico"> -->
 </head>
 <body>
     <header>
-        <h1>Todos!</h1>
+        <div class="logo">
+            <h1>T</h1>
+            <div class="marker logo-marker"></div>
+            <h1>D</h1>
+            <div class="marker logo-marker yes"></div>
+        </div>
         <div class="views">
             <button type="button" class="card-view">Card View</button>
             <button type="button" class="calendar-view">Calendar View</button>
@@ -108,7 +114,7 @@
 
             </ul>
         </div>
-        <div class="card-viewer hidden">
+        <div class="card-viewer ">
             <!-- <div class="card urgent dummy-modal">
                 <h3>Work on this todo program</h3>
                 <p>Work on this program for atleast 2 hours a day</p>
@@ -202,7 +208,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="calendar-viewer ">
+        <div class="calendar-viewer hidden">
             <div class="calendar-header">
                 <button type="button" class="left"> <img src="./assets/arrow-left-bold.svg" alt="left"></button>
                 <h1 class="month">March</h1>

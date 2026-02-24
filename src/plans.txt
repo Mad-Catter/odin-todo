@@ -22,50 +22,13 @@ Google calendar uses a table instead of a calendar which I like.  I still need a
 
 
 
-Still todo:
-Create Todo Menu and logic.
-Adding todo's to folder
-    In create folder?
-    Create todo?
-    Probably a dropdown menu of todos
-Need to mark todo as complete.
-Have a complete folder.
-
-
-Calendar changes {
-  Clicking month brings up a drop down of years + months
-  Still need to generate todos on the calendar from a todo list
-  Need to clean up the whole code of the calendar, everything is a bit of a mess at the moment.
-}
-
-General needs {
-  Creating new todos.
-  Folders.
-  A logo?
-  Currently the modals arent live connections.  If you change a modal on the calendar view it does not change the modal on the card view and vice versa.
-  The calendar todos need a time stamp for when they are due.  Because of this, I need to either have a separate time stamp on the todo object or change the way time is kept on the objects.
-  Still need to create the todo creator.
-}
-
 Currently The time cant have any spaces between the time and the am/pm or the calendar view may overflow.  
 
 Remaining needs {
-  Figure out a way to hook everything up.  The new todo modal can create new todos but has no where to put them.
-  I've decided on the folders being put on the objects.  I still need logic for folders
-  folder logic {
-    
-    A way to only show todos of a certain folder
-    Folder Dialog needs editing on appearance
-  }
   todos {
     A display of what folders they are in
-    A way to mark a todo as complete
+
   }
-  Currently my todo displays arent live {
-    A potential fix is to have everything regenerate every time you click a new tab.
-    Also keep the objects inside of their own object?  Dont think this will fix everything in its entireity, but exporting an array will only export a static copy
-  }
-  Still need a logo
   Optional {
     Create a new time input if I dont respect my own time still.
     folders {
@@ -84,18 +47,23 @@ Things to regenerate {
 }
 
 I could change the error popup to be a bit more clear that is an error, some red colors perhaps.
-
-{
-  A way to mark todos as complete.
-  Change the all todos and complete todos. So that they can't be deleted.
-
-}
-
 super optional {
-  A confirm button on deleting todos.
+  Change Todo priority, name, due date, and desc.
+  Have things regenerate more often based off of completion status
 }
 
-Last needs today {
-  add a complete button
-  Makre sure toggle complete works
+
+Final Touches {
+  Local Storage
+  Cleaning up code {
+    Does the code follow the SOLID principles?  If not how much work is it to fix?  What can I do in the future to better follow SOLID principles?
+    Add Proper comments.
+  }
+  Optional details {
+    The ability to change properties of todos and the folder names.  
+    Adding the ability to see which folders a todo is in.
+    Adding the ability to add todos to a folder on creation.
+    FavIcon
+
+  }
 }

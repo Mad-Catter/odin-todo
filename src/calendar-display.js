@@ -53,8 +53,19 @@ export function displayModalCalendar(date) {
     const dateInput = document.querySelector("#todo-date")
     for (let i = 0; i < array.length; i++) {
         const day = elementCreator("button", modalCalendar, ["modal-day", array[i].fullDate], {type: "button"});
+        if (day.classList.contains(dateInput.value) && (dateInput.value !== undefined)) day.classList.add("selected")
         day.addEventListener("click", e => {
-            if (e.currentTarget.classList[1] !== "undefined") dateInput.value = e.currentTarget.classList[1];
+            if (e.currentTarget.classList[1] !== "undefined") {
+                dateInput.value = e.currentTarget.classList[1];
+                const days = document.querySelectorAll(".modal-day");
+                for (const day of days) {
+                    if (day.classList.contains("selected")) {
+                        day.classList.remove("selected")
+                        break
+                    }
+                }
+                e.currentTarget.classList.add("selected");
+            } 
         })
         if (array[i] !== "") {
             const dayNumber = elementCreator("p", day, "", {textContent: array[i].dayDate})

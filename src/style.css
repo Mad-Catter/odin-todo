@@ -26,8 +26,21 @@ button:hover {
 }
 
 /* Header Section */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
 h1 {
-    color: blue;
+    color: rgb(255, 255, 255);
+    font-size: 4rem;
+}
+.logo .logo-marker {
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    margin: 0px
 }
 header {
     display: flex;
@@ -205,6 +218,13 @@ main {
 .todo-error {
     left: 480px;
     top: 45px;
+}
+
+.folder-delete-dialog {
+    left: 250px;
+    z-index: 8;
+    width: 200px;
+    text-align: center;
 }
 /* Card Viewer Section */
 .card-viewer {
@@ -470,7 +490,7 @@ main {
     padding: 6px;
     border-top: none;
     border-left: none;
-    border-radius: 5px 0px 0px 0px;
+    border-radius: 0px 0px 5px 0px;
 }
 .complete-box:hover {
     cursor: pointer;
@@ -484,6 +504,44 @@ main {
 }
 .complete-box .marker {
     top: 5px;
+}
+.delete-dialog-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: solid 3px var(--container-border-color);
+    border-top: none;
+    border-right: none;
+    border-radius: 0 0 0 5px;
+    background-color: var(--container-color);
+    padding: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 45px;
+}
+.delete-dialog {
+    background-color: var(--header-button-color);
+    border: 3px solid var(--header-button-border);
+    border-radius: 8px;
+    padding: 5px;
+}
+.modal-delete-dialog {
+    left: 85%;
+    top: 50px;
+    
+    width: 200px
+}
+.confirm-delete-container {
+    display: flex;
+    justify-content: space-around;
+}
+.delete-dialog button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 /* Calendar View Section */
 
@@ -538,6 +596,9 @@ main {
 }
 .today {
     background-color: var(--header-button-border);
+}
+.modal-day.selected {
+    background-color: rgba(128, 128, 128, 0.432);
 }
 .day:hover .today,
 .modal-day:hover .today {

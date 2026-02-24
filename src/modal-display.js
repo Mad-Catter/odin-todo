@@ -7,7 +7,14 @@ export default function createModal(todo, parent, dueBox) {
     const completeBox = elementCreator("div", modal, "complete-box");
     const completeMarker = elementCreator("div", completeBox, "marker");
     if (todo.isComplete()) completeMarker.classList.add("yes");
-    const completeButton = elementCreator("button", completeBox, "", {type: "button", textContent: "Complete"})
+    const completeButton = elementCreator("button", completeBox, "", {type: "button", textContent: "Complete"});
+
+    const deleteDialogButton = elementCreator("button", modal, "delete-dialog-button", {type: "button", textContent: "X"});
+    const deleteDialog = elementCreator("dialog", modal, "modal-delete-dialog delete-dialog");
+    elementCreator("p", deleteDialog, "", {textContent: "Delete Todo?"});
+    const confirmDeleteContainer = elementCreator("div", deleteDialog, "confirm-delete-container")
+    const confirmDelete = elementCreator("button", confirmDeleteContainer, "", {type: "button", textContent: "Confirm"});
+    const cancelDelete = elementCreator("button", confirmDeleteContainer, "", {type: "button", textContent: "Cancel"});
     
     elementCreator("h3", modal, "", {textContent: todo.title});
     elementCreator("p", modal, "", {textContent: todo.desc});
@@ -72,6 +79,9 @@ export default function createModal(todo, parent, dueBox) {
     const noteEditArea = elementCreator("textarea", notesContainer, "hidden edit-notes");
 
     interactiveModal.enableCompleteButton(completeMarker, completeBox, todo, priority, dueBox);
+
+    interactiveModal.enableDeleteDialog(deleteDialogButton, deleteDialog, modal);
+    interactiveModal.enableDeleteDialogButtons(confirmDelete, cancelDelete, deleteDialog, todo);
     
     interactiveModal.showEditField(noteEditButton, noteEditArea, textNotes);
     interactiveModal.enableEditNotes(noteEditArea, textNotes, todo);

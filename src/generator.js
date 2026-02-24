@@ -85,17 +85,10 @@ export const generator = {
             }
         })
         const listOfActiveFolderNames = Object.keys(listOfActiveFolders);
-        if (listOfActiveFolderNames.includes("all-todos")) {
-            for (let i = 0; i < listOfTodoNames.length; i++) {
-                const todo = listOfTodos[listOfTodoNames[i]];
+        for (let i = 0; i < listOfTodoNames.length; i++) {
+            const todo = listOfTodos[listOfTodoNames[i]];
+            if (todo.folders.some(folder => listOfActiveFolderNames.includes(folder))) {
                 createCard(todo);
-            }
-        } else {
-            for (let i = 0; i < listOfTodoNames.length; i++) {
-                const todo = listOfTodos[listOfTodoNames[i]];
-                if (todo.folders.some(folder => listOfActiveFolderNames.includes(folder))) {
-                    createCard(todo);
-                }
             }
         }
         

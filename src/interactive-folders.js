@@ -18,7 +18,7 @@ export const enableFolder = {
                 delete listOfActiveFolders[folderName]
                 marker.classList.remove("yes");
             }
-            if (Object.keys(listOfActiveFolders) == "") {
+            if ((Object.keys(listOfActiveFolders) == "" || Object.keys(listOfActiveFolders) == "complete-todos")) {
                 allMarker.classList.add("yes");
                 listOfActiveFolders["all-todos"] = "all-todos";
             }
@@ -39,8 +39,21 @@ export const enableFolder = {
             e.stopPropagation();
         })
     },
-    deleteButton (button, parent) {
-        button.addEventListener("click", e => {
+    deleteDialog(showButton, dialog, confirmButton, cancelButton, parent) {
+        showButton.addEventListener("click", e => {
+            e.stopPropagation();
+            dialog.show();
+        })
+        dialog.addEventListener("click", e => {
+            e.stopPropagation();
+        })
+        document.querySelector("body").addEventListener("click", e => {
+            dialog.close();
+        })
+        cancelButton.addEventListener("click", e => {
+            dialog.close();
+        })
+        confirmButton.addEventListener("click", e => {
             const folderName = parent.classList[0];
             const listOfTodoNames = Object.keys(listOfTodos);
             for (let i = 0; i < listOfTodoNames.length; i++) {
@@ -72,6 +85,19 @@ export const enableFolder = {
     },
     dialogContent(dialog, parent) {
         const listOfTodoNames = Object.keys(listOfTodos);
+        listOfTodoNames.sort((a,b) => {
+                    // I dont know as much about sort as I wish.  So this is probably a bad way of going about this.  I want the todos to be sorted in the order of:  no date/time > only time > full dates > completed.
+                    // Currently past date todos are shown first.  Maybe I should change that.
+                    const firstTodo = listOfTodos[a];
+                    const secondTodo = listOfTodos[b];
+                    if ((firstTodo.isComplete() === true) && (secondTodo.isComplete() === false)) {
+                        return 1
+                    } else if ((secondTodo.isComplete() === true) && (firstTodo.isComplete() === false)) {
+                        return -1
+                    } else {
+                        return firstTodo.title.localeCompare(secondTodo.title)
+                    }
+        })
         for (let i = 0; i < listOfTodoNames.length; i++) {
             const folderName = parent.classList[0];
             const currentTodo = listOfTodos[listOfTodoNames[i]];
@@ -99,9 +125,14 @@ export const enableFolder = {
 function enableAllTodos() {
     const allMarker = document.querySelector(".all-marker");
     const allTodos = document.querySelector(".all-todos");
+    const completeMarker = document.querySelector(".complete-marker")
     allTodos.addEventListener("click", e => {
         const listOfActiveFolderNames = Object.keys(listOfActiveFolders)
         if (!(listOfActiveFolderNames.includes("all-todos"))) {
+            // This is a very lazy way to make sure that the status of whether or not the program shows complete folders is saved throughout this function.
+            let completeFolder = false;
+            if (listOfActiveFolderNames.includes("complete-todos")) completeFolder = true;
+
             const markerList = document.querySelectorAll(".marker-text > .marker");
             for (const marker of markerList.values()) {
                 marker.classList.remove("yes");
@@ -112,6 +143,10 @@ function enableAllTodos() {
             }
             allMarker.classList.add("yes");
             listOfActiveFolders["all-todos"] = "all-todos";
+            if (completeFolder) {
+                completeMarker.classList.add("yes");
+                listOfActiveFolders["complete-todos"] = "complete-todos";
+            }
         }
         generator.generateCalendar();
         generator.generateCardDisplay();
@@ -122,10 +157,7 @@ function enableCompleteTodos() {
     const completeMarker = document.querySelector(".complete-marker");
     const allMarker = document.querySelector(".all-marker");
     completeTodos.addEventListener("click", e => {
-        if (listOfActiveFolders["all-todos"] !== undefined) {
-            allMarker.classList.remove("yes");
-            delete listOfActiveFolders["all-todos"];
-        }
+
         if (listOfActiveFolders["complete-todos"] === undefined) {
             listOfActiveFolders["complete-todos"] = "complete-todos";
             completeMarker.classList.add("yes");
@@ -133,7 +165,7 @@ function enableCompleteTodos() {
             delete listOfActiveFolders["complete-todos"]
             completeMarker.classList.remove("yes");
         }
-        if (Object.keys(listOfActiveFolders) == "") {
+        if ((Object.keys(listOfActiveFolders) == "" || Object.keys(listOfActiveFolders) == "complete-todos")) {
             allMarker.classList.add("yes");
             listOfActiveFolders["all-todos"] = "all-todos";
         }
