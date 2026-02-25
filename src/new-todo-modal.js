@@ -1,10 +1,6 @@
 import { generator } from "./generator.js";
-import { setMonth, getMonth} from "date-fns";
-import { listOfFolders, listOfTodos } from "./list.js";
-import elementCreator from "./element-creator.js";
+import { listOfTodos } from "./list.js";
 import Todo from "./todo-creator.js";
-
-
 const modalLeftButton = document.querySelector(".modal-left")
 const modalRightButton = document.querySelector(".modal-right")
 const modalCalendar = document.querySelector(".modal-calendar");
@@ -23,8 +19,6 @@ modalCalendar.addEventListener("wheel", e => {
         generator.generateModalCalendar("increase");
     }
 });
-
-// This might need to be moved, I want all the buttons to be together
 const todoModal = document.querySelector(".todo-modal")
 const todoName = document.querySelector("#todo-name");
 const todoDesc = document.querySelector("#todo-desc");
@@ -33,7 +27,6 @@ const todoTime = document.querySelector("#todo-time");
 const todoPriority = document.querySelector("#todo-priority");
 const todoConfirm = document.querySelector(".todo-confirm");
 const todoErrorDialog = document.querySelector(".todo-error")
-// Need to add an error for repeat names possibly.
 todoConfirm.addEventListener("click", e => {
     e.preventDefault()
     if (!todoName.value) {
@@ -45,24 +38,27 @@ todoConfirm.addEventListener("click", e => {
             if (folderNode.classList.contains("confirm")) todoFolders.push(folderNode.classList[0])
         }
         const todo = new Todo(todoName.value, todoDesc.value, todoPriority.value, todoDate.value, todoTime.value, "", "", todoFolders);
+        // This logic checks if there is already a todo with the same name, if there is it will add a counter to the name of the new todo (1).
         // This logic might need to be moved elsewhere
         let title = todo.title
         let repeat = 1;
         while (listOfTodos[title] !== undefined) {
+            // If there is not already a counter, a counter will be added.
             if (!(title.slice(-3) === `(${repeat-1})`)) {
                 title = title + `(${repeat})`;
             } else {
+            // if there is a counter, the counter will be removed for the new counter.
                 title = title.slice(0, -3) + `(${repeat})`;
             }
             repeat++;
             todo.title = title;
         }
+        // I want the todos to not store time in military time.  This will add am/pm as required to the time.
         if (todo.time && (todo.time.slice(0, 2) <= 12)) {
-            todo.time = todo.time+"am"
+            todo.time = todo.time+"am";
         } else if (todo.time) {
-            todo.time = (todo.time.slice(0, 2) -12) + todo.time.slice(2) +"pm"
+            todo.time = (todo.time.slice(0, 2) - 12) + todo.time.slice(2) + "pm";
         }
-        console.log(todo.time)
         listOfTodos[title] = todo;
         generator.generateAll();
         todoModal.close()

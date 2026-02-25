@@ -1,9 +1,12 @@
 import { listOfFolders, listOfTodos, listOfActiveFolders} from "./list.js";
-import { generateFolderList } from "./folder-display.js";
 import { displayCalendar, displayModalCalendar } from "./calendar-display.js";
 import { setMonth, getMonth, differenceInDays} from "date-fns";
 import elementCreator from "./element-creator.js";
 import createCard from "./card-display.js";
+import plusImg from "../src/assets/plus.svg";
+import { enableFolder } from "./interactive-folders.js";
+
+
 export const generator = {
     offset: 0,
     modalOffset: 0,
@@ -24,7 +27,39 @@ export const generator = {
             })
         }
     },
-    generateFolderList: generateFolderList,
+    generateFolderList() {
+        const sideList = document.querySelector(".side-list");
+        sideList.replaceChildren();
+        const listOfFolderNames = Object.keys(listOfFolders);
+        for (let i = 0; i < listOfFolderNames.length; i++) {
+            
+            const name = listOfFolderNames[i];
+            const li = elementCreator("li", sideList, [name.replaceAll(" ", "-").toLocaleLowerCase(), "listed-folder"]);
+            const markerNText = elementCreator("div", li, "marker-text")
+            const marker = elementCreator("div", markerNText, "marker")
+            elementCreator("p", markerNText,"", {textContent: name});
+
+            const buttons = elementCreator("div", li, "folder-buttons");
+            const addButton = elementCreator("button", buttons, "", {type: "button"});
+            elementCreator("img", addButton, "", {src: plusImg, alt: "add"});
+            const deleteDialogButton = elementCreator("button", buttons, "", {type: "button", textContent: "X"});
+            const deleteDialog = elementCreator("dialog", li, "delete-dialog folder-delete-dialog");
+            elementCreator("p", deleteDialog, "", {textContent: "Delete Folder?"});
+            const confirmCancelContainer = elementCreator("div", deleteDialog, "confirm-delete-container")
+            const confirmButton = elementCreator("button", confirmCancelContainer, "", {type: "button", textContent: "Confirm"});
+            const cancelButton = elementCreator("button", confirmCancelContainer, "", {type: "button", textContent: "Cancel"});
+
+            const todoDialog = elementCreator("dialog", li, "list-of-todos-dialog");
+            
+            enableFolder.addButton(addButton, todoDialog);
+            enableFolder.dialogContent(todoDialog, li);
+            enableFolder.deleteDialog(deleteDialogButton, deleteDialog, confirmButton, cancelButton, li)
+            enableFolder.activeFolder(li, marker)
+        }
+        // Currently, any time a change to a folder worth saving is made, generateFolderList is called.  So I am attaching the saving of folders to this function.
+        // I'm pretty certain this breaks SOLID though, so I might need to move this at some point.
+        this.saveFolders();
+    },
     generateCardDisplay() {
         const cardViewer = document.querySelector(".card-viewer");
         cardViewer.replaceChildren();
@@ -91,6 +126,9 @@ export const generator = {
                 createCard(todo);
             }
         }
+        // Currently, any time a change to a todo worth saving is made, generateCardDisplay is called.  So I am attaching the saving of todos to this function.
+        // I'm pretty certain this breaks SOLID though, so I might need to move this at some point.
+        this.saveTodos();
         
     },
     generateCalendar(change) {
@@ -119,6 +157,20 @@ export const generator = {
         listOfFolders[folder] = folder;
         this.generateFolderList();
         this.generateFolderBoxContent();
+    },
+    saveTodos() {
+        try {
+            localStorage.setItem("listOfTodos", JSON.stringify(listOfTodos));
+        } catch (e) {
+            console.error(e);
+        }
+    },
+    saveFolders() {
+        try {
+            localStorage.setItem("listOfFolders", JSON.stringify(listOfFolders));
+        } catch (e) {
+            console.error(e);
+        }
     },
     generateAll() {
         this.generateModalCalendar();

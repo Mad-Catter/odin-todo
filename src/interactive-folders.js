@@ -5,12 +5,15 @@ export const enableFolder = {
     activeFolder (folder, marker) {
         const allMarker = document.querySelector(".all-marker");
         const folderName = folder.classList[0];
+
         
         folder.addEventListener("click", e => {
+            // The all todo folder should not be able to be selected with other folders (ignoring the complete folder.).  This will turn all folders off if it is selected.
             if (listOfActiveFolders["all-todos"] !== undefined) {
                 allMarker.classList.remove("yes");
                 delete listOfActiveFolders["all-todos"];
             }
+            // This will toggle any folder being selected.
             if (listOfActiveFolders[folderName] === undefined) {
                 listOfActiveFolders[folderName] = folderName;
                 marker.classList.add("yes");
@@ -18,6 +21,7 @@ export const enableFolder = {
                 delete listOfActiveFolders[folderName]
                 marker.classList.remove("yes");
             }
+            // If no folders or only the complete folder are visible, the all folder will be shown.
             if ((Object.keys(listOfActiveFolders) == "" || Object.keys(listOfActiveFolders) == "complete-todos")) {
                 allMarker.classList.add("yes");
                 listOfActiveFolders["all-todos"] = "all-todos";
@@ -58,7 +62,6 @@ export const enableFolder = {
             const listOfTodoNames = Object.keys(listOfTodos);
             for (let i = 0; i < listOfTodoNames.length; i++) {
                 const todoFolders = listOfTodos[listOfTodoNames[i]].folders;
-                // Might need to check that this is working as I want it to.  Are the folders actually being removed from the objects?
                 if (todoFolders.includes(folderName)){
                     todoFolders.splice(todoFolders.indexOf(folderName),1);
                     
@@ -69,8 +72,8 @@ export const enableFolder = {
             // Right now the folderName is found using the class name of the DOM element.  However that class name is different to the internal name in the list of folders.
             // So I have to match it with this .toLowerCase and .replaceAll().  I could think about replacing the internal name to match the class name perhaps.
             const listOfFolderNames = Object.keys(listOfFolders);
-            for (let j=0; j < listOfFolderNames.length; j++) {
-                const currentFolder = listOfFolderNames[j]
+            for (let i=0; i < listOfFolderNames.length; i++) {
+                const currentFolder = listOfFolderNames[i]
                 if (currentFolder.toLowerCase() === folderName.toLowerCase().replaceAll("-", " ")) {
                     delete listOfFolders[currentFolder];
                     delete listOfActiveFolders[currentFolder];
@@ -80,14 +83,14 @@ export const enableFolder = {
                     }
                 }
             }
-            parent.remove();
+            generator.generateFolderList();
+            generator.generateFolderBoxContent();
         })
     },
     dialogContent(dialog, parent) {
         const listOfTodoNames = Object.keys(listOfTodos);
+        // Todos are sorted alphabetically with complete todos being put at the end.
         listOfTodoNames.sort((a,b) => {
-                    // I dont know as much about sort as I wish.  So this is probably a bad way of going about this.  I want the todos to be sorted in the order of:  no date/time > only time > full dates > completed.
-                    // Currently past date todos are shown first.  Maybe I should change that.
                     const firstTodo = listOfTodos[a];
                     const secondTodo = listOfTodos[b];
                     if ((firstTodo.isComplete() === true) && (secondTodo.isComplete() === false)) {

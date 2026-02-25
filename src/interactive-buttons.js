@@ -89,26 +89,7 @@ todoCancel.addEventListener("click", e => {
 todoConfirm.addEventListener("click", e => {
     e.stopPropagation();
 })
-// todoConfirm.addEventListener("click", e => {
-// //     e.preventDefault();
-// //     // This should maybe be moved to the error module.
-// //     // if ((todoName.value.toLowerCase() in listOftodos)) {
-// //     //     e.stopPropagation();
-// //     //     todoErrorDialog.textContent = "A todo with that name already exists!"
-// //     //     todoErrorDialog.show();
-// //     // } else 
-// //     // if (todoName.value === "") {
-// //     //     e.stopPropagation();
-// //     //     todoErrorDialog.textContent = "You cant have a todo with no name!";
-// //     //     todoErrorDialog.show();
-// //     // // } else{
-// //     // //     addTotodoList(todoName.value);
-// //     // //     todoName.value = "";
-// //     //     todoModal.close();
-// //     //     todoErrorDialog.close();
-// //     // }
-    
-// })
+
 todoModal.addEventListener("click", e => {
     e.stopPropagation();
     const todoModalDimensions = todoModal.getBoundingClientRect();
