@@ -713,3 +713,35 @@ main {
 .date-time-container label{
     padding-left: 2%;
 }
+
+/* Ipad Changes */
+
+@media only screen and (max-width: 1190px) {
+    .logo {
+        padding: 0 40px
+    }
+    .due-box {
+        width: initial;
+    }
+    .modal[open] {
+        width: 85vw;
+    }
+    .modal-month,
+    .folder-box h1 {
+        font-size: 2.85rem;
+    }
+    .modal-box {
+        width: 400px;
+        height: 250px
+    }
+    .modal-delete-dialog {
+        left: 75%;
+    }
+    .new-checkbox-dialog {
+        left: 75px;
+    }
+    .folder-buttons,
+    .checkbox-buttons {
+        display: flex;
+    }
+}

@@ -1,9 +1,5 @@
 // Export Class that creates a todo object.
 // This needs a title, a description, a priority level, duedate, notes, and checklist (object with values set to true or false).
-// Questions to decide
-// Character limit on title?  How long should a title be.
-// How should I go about the due date?  Do I use the date object even though it will be removed with json.
-// 
 export default class Todo {
     complete = false;
     oldPriority = "";
@@ -67,7 +63,7 @@ export default class Todo {
             this.priority = "complete";
         } else {
             this.complete = false;
-            this.folders.splice(this.folders.indexOf("complete-todos"),1)
+            this.folders.splice(this.folders.indexOf("complete-todos"),1);
             this.priority = this.oldPriority;
             this.oldPriority = "";
         }

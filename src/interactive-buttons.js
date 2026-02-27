@@ -22,6 +22,8 @@ const cardViewer = document.querySelector(".card-viewer");
 const calendarViewButton = document.querySelector(".calendar-view");
 const calendarViewer = document.querySelector(".calendar-viewer")
 const logoMarkers = document.querySelectorAll(".logo-marker");
+
+
 for (const marker of logoMarkers) {
     marker.addEventListener("click", e => {
         marker.classList.toggle("yes");
@@ -52,7 +54,7 @@ folderCancel.addEventListener("click", e => {
 })
 folderConfirm.addEventListener("click", e => {
     e.preventDefault();
-    // This should maybe be moved to the error module.
+    // This should be moved to the error module.
     if ((folderName.value.toLowerCase() in listOfFolders)) {
         e.stopPropagation();
         folderErrorDialog.textContent = "A folder with that name already exists!"

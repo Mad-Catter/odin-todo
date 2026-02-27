@@ -1,6 +1,8 @@
-import { differenceInCalendarDays, differenceInDays, differenceInWeeks, differenceInMonths, differenceInYears,  } from "date-fns";
+import { differenceInCalendarDays, differenceInWeeks, differenceInMonths, differenceInYears,  } from "date-fns";
 
 export function compareDates(date, time) {
+    // This function compares the current date against a given date and returns a string that states how far away that date is in common terms.
+    // Like today, last week, 3 weeks ago, etc.
     const now = new Date();
     const years = differenceInYears(date, now);
     if (years > 0) {
@@ -62,8 +64,8 @@ export function compareDates(date, time) {
             return `Due: ${days * -1} days ago`
         }
     }
-    if (time) {
-        
+
+    if (time) {    
         let timeHours = Number(time.split(":")[0])
         if (time.includes("pm")) timeHours += 12;
         const hours = timeHours - now.getHours()

@@ -4,7 +4,7 @@ import { isSameDay } from "date-fns";
 import { listOfTodos } from "./list.js";
 import { listOfActiveFolders } from "./list.js";
 import createModal from "./modal-display.js"
-// The function takes a date object and gives it to generateMonthArray to get an array of all the days in the month of the date object.
+// The function takes a date object and gives it to generateMonthArray to get an array of all the days in the month of the date object and then turns it into a a grid of divs.
 export function displayCalendar(date) {
     const array = generateMonthArray(date);
     const monthDisplay = document.querySelector(".month");

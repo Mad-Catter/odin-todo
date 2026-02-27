@@ -65,7 +65,12 @@ export const generator = {
         cardViewer.replaceChildren();
         const listOfTodoNames = Object.keys(listOfTodos);
         listOfTodoNames.sort((a,b) => {
-            // I dont know as much about sort as I wish.  So this is probably a bad way of going about this.  I want the todos to be sorted in the order of:  no date/time > only time > full dates > completed.
+            // I know this is a very bad way of going about this and could be a lot simpler if I just used regular date objects on the todos.
+            // However, I dont know as much about sort as I wish,
+            // so I decided to use this as an oppurtunity to experiement a bit with the sort function to get a better understanding of it.
+            // I do apologize to anyone who has to read this spaghetti.
+            //The todos to be sorted in the order of:  no date/time > only time > full dates > completed.
+            // My personal logic is that if there is no date/only a time, then the todo is likely something to be completed in the short term, and thus should be first.
             // Currently past date todos are shown first.  Maybe I should change that.
             const firstTodo = listOfTodos[a];
             const secondTodo = listOfTodos[b];

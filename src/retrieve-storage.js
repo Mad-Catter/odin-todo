@@ -1,4 +1,6 @@
 import Todo from "./todo-creator.js";
+// Both of these functions have a default list of folders/todos that will be loaded if local storage is empty/cant be accessed.
+// The todos that are loaded are manually given todo methods as they are lost when being turned into json for local storage.
 export function retrieveFolders(list) {
     let folders = {
         "My First Folder": "My First Folder",
